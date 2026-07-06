@@ -1,0 +1,513 @@
+/* =============================================
+   BASE
+   ============================================= */
+body {
+  background-color: var(--color-bg);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  overflow: hidden;
+}
+
+body.ready {
+  overflow: auto;
+}
+
+/* =============================================
+   CURSOR — G DA GEEZ
+   ============================================= */
+.cursor-g {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  pointer-events: none;
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-teal);
+  line-height: 1;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+  user-select: none;
+}
+
+/* =============================================
+   INTRO SCREEN
+   ============================================= */
+#intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+#intro-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+#intro-overlay {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* =============================================
+   MAIN CONTENT
+   ============================================= */
+#main-content {
+  opacity: 0;
+  padding-bottom: 96px; /* espaço para o dock fixo */
+}
+
+/* =============================================
+   HERO WRAPPER (sticky container)
+   ============================================= */
+.hero-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+/* =============================================
+   HERO SPLIT
+   ============================================= */
+.hero-split {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+  transform-origin: center top;
+  will-change: transform, border-radius;
+}
+
+/* --- PAINEL ESQUERDO (vídeo) --- */
+.hero-split__left {
+  width: 50%;
+  flex-shrink: 0;
+  height: 100%;
+  position: relative;
+  background: #fff;
+  overflow: hidden;
+  perspective: 900px;
+}
+
+.hero-split__left-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.hero-split__left-inner video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+}
+
+/* badge label no vídeo — Liquid Glass */
+.hero-split__badge {
+  position: absolute;
+  top: 36px;
+  left: 36px;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  padding: 9px 20px;
+  border-radius: 999px;
+  z-index: 2;
+  -webkit-font-smoothing: antialiased;
+
+  /* Liquid Glass */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.14) 0%,
+    rgba(255, 255, 255, 0.06) 100%
+  );
+  backdrop-filter: blur(24px) saturate(180%) brightness(1.1);
+  -webkit-backdrop-filter: blur(24px) saturate(180%) brightness(1.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* linha vertical divisória */
+.hero-split__left::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 10%;
+  height: 80%;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--color-teal) 30%,
+    var(--color-purple) 70%,
+    transparent
+  );
+  z-index: 3;
+}
+
+/* --- PAINEL DIREITO (roxo) --- */
+.hero-split__right {
+  flex: 1;
+  height: 100%;
+  background: var(--color-purple);
+  position: relative;
+  overflow: hidden;
+  perspective: 900px;
+}
+
+.hero-split__right-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(40px, 6vw, 90px);
+  transform-style: preserve-3d;
+  will-change: transform;
+  position: relative;
+  z-index: 1;
+  /* corrige renderização de texto em camadas GPU */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  backface-visibility: hidden;
+}
+
+/* fundo com noise sutil no painel roxo */
+.hero-split__right::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  opacity: 0.04;
+  pointer-events: none;
+}
+
+/* glow de luz no canto inferior esquerdo */
+.hero-split__right::after {
+  content: '';
+  position: absolute;
+  bottom: -80px;
+  left: -80px;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, rgba(7,201,172,0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* --- TEXTO DO PAINEL DIREITO --- */
+.hero-split__eyebrow {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 28px;
+  opacity: 0;
+  transform: translateY(16px);
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 16px;
+  border-radius: 999px;
+
+  /* Liquid Glass sobre o painel roxo */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0.04) 100%
+  );
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+.hero-split__phrase {
+  font-family: var(--font-heading);
+  font-size: clamp(28px, 4vw, 68px);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  overflow: hidden;
+}
+
+.hero-split__phrase .line {
+  display: block;
+  overflow: hidden;
+}
+
+.hero-split__phrase .line span {
+  display: block;
+  transform: translateY(110%);
+}
+
+.hero-split__phrase em {
+  font-style: normal;
+  color: var(--color-teal);
+}
+
+.hero-split__sub {
+  margin-top: 20px;
+  font-size: clamp(12px, 1vw, 14px);
+  color: rgba(255,255,255,0.55);
+  line-height: 1.7;
+  max-width: 320px;
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.hero-split__cta {
+  margin-top: 28px;
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+/* --- TICKER (faixa de texto correndo) --- */
+.ticker {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding: 14px 0;
+  z-index: 10;
+}
+
+.ticker__track {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  white-space: nowrap;
+  width: max-content;
+}
+
+.ticker__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 32px;
+  padding-right: 48px;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+
+.ticker__item .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-teal);
+  flex-shrink: 0;
+}
+
+/* =============================================
+   BOTÕES
+   ============================================= */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--color-teal);
+  color: var(--color-bg);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 18px 36px;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  transition: background 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+}
+
+.btn-primary:hover {
+  background: #05b096;
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  padding-bottom: 3px;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.btn-outline:hover {
+  color: var(--color-white);
+  border-color: var(--color-white);
+}
+
+/* =============================================
+   SEÇÃO TEAL — Flip Links
+   ============================================= */
+.section-teal {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--color-purple);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  overflow: hidden;
+  padding-top: 80px;
+}
+
+/* ── Header acima das flip links ── */
+.flip-header {
+  position: relative;
+  z-index: 1;
+  padding: 0 clamp(32px, 5vw, 80px);
+  margin-bottom: 52px;
+}
+
+.flip-header__label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 18px;
+}
+
+.flip-header__title {
+  font-family: var(--font-heading);
+  font-size: clamp(22px, 2.8vw, 42px);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+
+.section-white {
+  width: 100%;
+  min-height: 100vh;
+  background: #FFFFFF;
+  position: relative;
+}
+
+#gradient-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.flip-links {
+  position: relative;
+  z-index: 1;
+}
+
+.flip-links {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0;
+}
+
+/* ── Link ── */
+.flip-link {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  font-family: var(--font-heading);
+  font-size: 14vw; /* ajustado por JS — isso é só fallback */
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+  line-height: 0.88;
+  color: #0D0D0D;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* camada superior — sobe no hover */
+.flip-link__top {
+  display: flex;
+}
+
+.flip-link__top span {
+  display: inline-block;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.flip-link:hover .flip-link__top span {
+  transform: translateY(-115%);
+}
+
+/* camada inferior — sobe de baixo no hover */
+.flip-link__bot {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  color: #fff;
+}
+
+.flip-link__bot span {
+  display: inline-block;
+  transform: translateY(115%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.flip-link:hover .flip-link__bot span {
+  transform: translateY(0);
+}
+
+/* GEEZ! — destaque especial */
+.flip-link--geez { color: #fff; }
+.flip-link--geez .flip-link__bot { color: #0D0D0D; }
+
+/* =============================================
+   NOISE GLOBAL (grão cinematográfico)
+   ============================================= */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  pointer-events: none;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}

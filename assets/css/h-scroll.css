@@ -1,0 +1,277 @@
+/* =============================================
+   SERVIÇOS — painel intro + parallax vertical
+   ============================================= */
+
+.h-section {
+  position: relative;
+  z-index: 25;           /* acima do card-section (z-index 20) */
+  background: var(--color-bg);
+}
+
+.h-track {
+  display: block;
+  width: 100%;
+}
+
+/* ─── PAINEL BASE ─────────────────────────── */
+.h-panel {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ─── PAINEL INTRO ────────────────────────── */
+.h-panel--intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(60px, 9vw, 130px);
+  background: var(--color-bg);
+}
+
+.h-intro__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--color-teal);
+  margin-bottom: 48px;
+}
+
+.h-intro__eyebrow::before {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--color-teal);
+}
+
+.h-intro__title {
+  font-family: var(--font-heading);
+  font-size: clamp(80px, 10vw, 148px);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  color: var(--color-white);
+}
+
+.h-intro__title em {
+  font-style: normal;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--color-teal);
+}
+
+.h-intro__hint {
+  margin-top: 72px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.h-intro__hint svg {
+  animation: hintBounce 1.8s ease-in-out infinite;
+}
+
+@keyframes hintBounce {
+  0%, 100% { transform: translateY(0);   opacity: 1; }
+  50%       { transform: translateY(7px); opacity: 0.4; }
+}
+
+/* decoração: letras grandes no fundo */
+.h-panel--intro::after {
+  content: 'GZ';
+  position: absolute;
+  right: clamp(40px, 6vw, 100px);
+  bottom: -40px;
+  font-family: var(--font-heading);
+  font-size: clamp(200px, 22vw, 360px);
+  font-weight: 800;
+  letter-spacing: -0.08em;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.025);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ─── PAINÉIS DE SERVIÇO ─────────────────── */
+.h-panel--service {
+  background: var(--color-bg);
+}
+
+.h-panel__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100%;
+}
+
+/* lado esquerdo — texto */
+.h-panel__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(60px, 8vw, 110px);
+  padding-right: clamp(40px, 5vw, 72px);
+  position: relative;
+  z-index: 2;
+}
+
+.h-panel__num {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.45em;
+  color: rgba(255, 255, 255, 0.18);
+  margin-bottom: 28px;
+}
+
+.h-panel__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1px solid;
+  margin-bottom: 36px;
+  width: fit-content;
+}
+
+.h-panel__name {
+  font-family: var(--font-heading);
+  font-size: clamp(48px, 5.5vw, 88px);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+
+.h-panel__desc {
+  font-family: var(--font-body);
+  font-size: clamp(14px, 1.25vw, 17px);
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.75;
+  max-width: 420px;
+}
+
+.h-panel__items {
+  margin-top: 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  list-style: none;
+}
+
+.h-panel__item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.h-panel__item::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  flex-shrink: 0;
+}
+
+/* ─── LADO VISUAL — PARALLAX ────────────── */
+.h-panel__visual {
+  position: relative;
+  overflow: hidden; /* essencial para o parallax não vazar */
+  z-index: 1;
+}
+
+/* camada do parallax — maior que o container para poder se mover */
+.h-panel__visual-bg {
+  position: absolute;
+  inset: -18% 0; /* 136% altura total — espaço para movimento */
+  will-change: transform;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* número decorativo grande dentro do bg */
+.h-panel__visual-bg::after {
+  content: attr(data-num);
+  position: absolute;
+  bottom: 8%;
+  right: -20px;
+  font-family: var(--font-heading);
+  font-size: clamp(180px, 20vw, 320px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  color: rgba(255, 255, 255, 0.06);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* linha vertical divisória entre info e visual */
+.h-panel__inner::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  height: 80%;
+  width: 1px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* ─── REVEAL DE ENTRADA ───────────────────── */
+.h-panel__info > * {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+
+.h-panel--service.is-revealed .h-panel__info > *:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.05s; }
+.h-panel--service.is-revealed .h-panel__info > *:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.15s; }
+.h-panel--service.is-revealed .h-panel__info > *:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.25s; }
+.h-panel--service.is-revealed .h-panel__info > *:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.35s; }
+.h-panel--service.is-revealed .h-panel__info > *:nth-child(5) { opacity: 1; transform: translateY(0); transition-delay: 0.45s; }
+
+/* ─── VARIANTES DE COR ───────────────────── */
+
+/* Teal */
+.h-panel--teal .h-panel__tag        { color: var(--color-teal);   border-color: rgba(7,201,172,.28);    background: rgba(7,201,172,.06); }
+.h-panel--teal .h-panel__name       { color: var(--color-teal); }
+.h-panel--teal .h-panel__item::before { background: var(--color-teal); }
+.h-panel--teal .h-panel__visual-bg  { background: linear-gradient(140deg, #071714 0%, #0c2822 45%, rgba(7,201,172,.38) 100%); }
+.h-panel--teal .h-panel__inner::before { background: linear-gradient(to bottom, transparent, var(--color-teal) 40%, var(--color-purple) 60%, transparent); }
+
+/* Purple */
+.h-panel--purple .h-panel__tag        { color: var(--color-purple); border-color: rgba(131,104,248,.28); background: rgba(131,104,248,.06); }
+.h-panel--purple .h-panel__name       { color: var(--color-purple); }
+.h-panel--purple .h-panel__item::before { background: var(--color-purple); }
+.h-panel--purple .h-panel__visual-bg  { background: linear-gradient(140deg, #0a0714 0%, #16102a 45%, rgba(131,104,248,.4) 100%); }
+.h-panel--purple .h-panel__inner::before { background: linear-gradient(to bottom, transparent, var(--color-purple) 40%, var(--color-pink) 60%, transparent); }
+
+/* Pink */
+.h-panel--pink .h-panel__tag        { color: var(--color-pink);   border-color: rgba(254,70,108,.28);   background: rgba(254,70,108,.06); }
+.h-panel--pink .h-panel__name       { color: var(--color-pink); }
+.h-panel--pink .h-panel__item::before { background: var(--color-pink); }
+.h-panel--pink .h-panel__visual-bg  { background: linear-gradient(140deg, #14070a 0%, #28101a 45%, rgba(254,70,108,.4) 100%); }
+.h-panel--pink .h-panel__inner::before { background: linear-gradient(to bottom, transparent, var(--color-pink) 40%, var(--color-teal) 60%, transparent); }

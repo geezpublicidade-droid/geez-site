@@ -1,0 +1,176 @@
+/* =============================================
+   GUIDE CARD — tutorial liquid glass
+   ============================================= */
+.guide-card {
+  position: fixed;
+  bottom: calc(96px + 24px); /* acima do dock */
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  z-index: 8000;
+  opacity: 0;
+  pointer-events: none;
+
+  display: flex;
+  align-items: center;
+  gap: 24px;
+
+  max-width: 640px;
+  width: calc(100% - 48px);
+  padding: 32px 32px 32px 28px;
+  border-radius: 28px;
+
+  /* Liquid Glass */
+  background: linear-gradient(
+    135deg,
+    rgba(20, 20, 20, 0.72) 0%,
+    rgba(12, 12, 12, 0.62) 100%
+  );
+  backdrop-filter: blur(48px) saturate(200%) brightness(1.12);
+  -webkit-backdrop-filter: blur(48px) saturate(200%) brightness(1.12);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 32px 80px rgba(0, 0, 0, 0.55),
+    0 8px 24px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+
+  will-change: transform, opacity;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* linha de luz no topo */
+.guide-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 20%;
+  right: 20%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(7, 201, 172, 0.5) 40%,
+    rgba(131, 104, 248, 0.4) 60%,
+    transparent
+  );
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+/* estado visível */
+.guide-card.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── ÍCONE GIF ── */
+.guide-card__icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    rgba(7, 201, 172, 0.12) 0%,
+    rgba(131, 104, 248, 0.08) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+.guide-card__icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ── TEXTO ── */
+.guide-card__body { flex: 1; }
+
+.guide-card__title {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-white);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.guide-card__text {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.6;
+}
+
+.guide-card__text strong {
+  color: var(--color-teal);
+  font-weight: 600;
+}
+
+/* ── SETA ANIMADA ── */
+.guide-card__arrow {
+  color: var(--color-teal);
+  flex-shrink: 0;
+  animation: guide-bounce 1.2s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba(7, 201, 172, 0.7));
+}
+
+.guide-card__arrow svg {
+  width: 28px;
+  height: 28px;
+}
+
+@keyframes guide-bounce {
+  0%, 100% { transform: translateY(0);   opacity: 1; }
+  50%       { transform: translateY(7px); opacity: 0.5; }
+}
+
+/* ── BOTÃO FECHAR ── */
+.guide-card__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.guide-card__close:hover {
+  background: rgba(254, 70, 108, 0.15);
+  border-color: rgba(254, 70, 108, 0.4);
+  color: var(--color-pink);
+}
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  .guide-card {
+    bottom: calc(80px + 14px);
+    max-width: calc(100% - 32px);
+    padding: 24px 20px;
+    gap: 16px;
+    border-radius: 20px;
+  }
+
+  .guide-card__icon  { width: 52px; height: 52px; font-size: 26px; border-radius: 14px; }
+  .guide-card__title { font-size: 17px; }
+  .guide-card__text  { font-size: 13px; }
+  .guide-card__arrow svg { width: 22px; height: 22px; }
+}

@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Geez Marketing — Apresentação</title>
+  <link rel="icon" type="image/png" href="assets/img/icons/favicon.png?v=2" />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@300,400,500,600,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal:   #07C9AC;
+      --purple: #8368F8;
+      --pink:   #FE466C;
+      --dark:   #0D0D0D;
+      --dark2:  #111;
+      --dark3:  #1A1A1A;
+      --white:  #FFFFFF;
+      --muted:  rgba(255,255,255,.38);
+
+      /* light slide vars */
+      --l-bg:     #EDEDEF;
+      --l-txt:    #0A0A0A;
+      --l-muted:  rgba(10,10,10,.62);
+      --l-border: rgba(10,10,10,.09);
+    }
+
+    html, body { width:100%; height:100%; overflow:hidden; background:var(--dark); font-family:'Satoshi',sans-serif; color:var(--white); }
+
+    /* ── GRAIN ── */
+    #grain { position:fixed; inset:0; width:100%; height:100%; pointer-events:none; z-index:999; opacity:.04; mix-blend-mode:overlay; }
+
+    /* ── PROGRESS ── */
+    #progress { position:fixed; top:0; left:0; height:2px; width:0%; background:linear-gradient(90deg,var(--teal),var(--purple)); z-index:500; box-shadow:0 0 10px rgba(7,201,172,.45); }
+
+    /* ── NAV DOTS ── */
+    #nav-dots { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); display:flex; gap:8px; z-index:500; }
+    .dot { width:7px; height:7px; border-radius:99px; background:rgba(120,120,120,.35); border:none; cursor:pointer; transition:background .3s,width .3s; }
+    .dot.active { background:var(--teal); width:22px; box-shadow:0 0 8px rgba(7,201,172,.5); }
+
+    /* ── NAV ARROWS ── */
+    .nav-btn { position:fixed; top:50%; transform:translateY(-50%); width:42px; height:42px; border-radius:50%; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.04); backdrop-filter:blur(8px); color:rgba(255,255,255,.4); cursor:pointer; z-index:500; display:flex; align-items:center; justify-content:center; transition:all .2s; }
+    .nav-btn:hover { background:rgba(7,201,172,.12); border-color:rgba(7,201,172,.4); color:var(--teal); }
+    #btn-prev { left:16px; }
+    #btn-next { right:16px; }
+    .slide.s-light ~ .nav-btn,
+    .s-light .nav-btn { color:rgba(0,0,0,.35); border-color:rgba(0,0,0,.1); background:rgba(255,255,255,.6); }
+
+    /* ── SLIDES ── */
+    #slides { position:fixed; inset:0; }
+    .slide { position:absolute; inset:0; display:flex; flex-direction:column; opacity:0; pointer-events:none; overflow:hidden; transition:background .3s; }
+    .slide.s-active { opacity:1; pointer-events:auto; }
+    .slide.s-light  { background:var(--l-bg); color:var(--l-txt); }
+
+    /* ── GLOW ── */
+    .glow { position:absolute; border-radius:50%; filter:blur(90px); pointer-events:none; animation:breathe 6s ease-in-out infinite; }
+    @keyframes breathe { 0%,100%{opacity:.7;transform:scale(1)} 50%{opacity:1;transform:scale(1.1)} }
+
+    /* ── LIQUID GLASS — dark ── */
+    .lg {
+      background: linear-gradient(135deg,rgba(255,255,255,.08),rgba(255,255,255,.03));
+      backdrop-filter: blur(24px) saturate(1.4);
+      -webkit-backdrop-filter: blur(24px) saturate(1.4);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 16px;
+      box-shadow: 0 20px 48px rgba(0,0,0,.35), 0 4px 12px rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.14);
+      position: relative; overflow: hidden;
+    }
+    .lg::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:1px;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.32),transparent);
+    }
+
+    /* ── LIQUID GLASS — light ── */
+    .lg-light {
+      background: rgba(255,255,255,.62);
+      backdrop-filter: blur(20px) saturate(1.6);
+      -webkit-backdrop-filter: blur(20px) saturate(1.6);
+      border: 1px solid rgba(255,255,255,.85);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.07), 0 2px 8px rgba(0,0,0,.04), inset 0 1px 0 rgba(255,255,255,.95), inset 0 -1px 0 rgba(0,0,0,.03);
+      position: relative; overflow: hidden;
+    }
+
+    /* ── HEADER / FOOTER ── */
+    .s-header { display:flex; justify-content:space-between; align-items:center; padding:22px 48px 0; flex-shrink:0; position:relative; z-index:1; }
+    .s-logo      { height:46px; width:auto; mix-blend-mode:screen;   display:block; }
+    .s-logo-dark { height:46px; width:auto; mix-blend-mode:multiply; display:block; }
+    .s-badge  { font-size:9px; font-weight:600; letter-spacing:.28em; text-transform:uppercase; color:var(--teal); border:1px solid rgba(7,201,172,.3); background:rgba(7,201,172,.06); padding:5px 14px; border-radius:999px; }
+    .s-num    { font-size:10px; color:var(--muted); letter-spacing:.2em; }
+    .s-num-dark { font-size:10px; color:var(--l-muted); letter-spacing:.2em; }
+    .s-footer { display:flex; justify-content:space-between; align-items:center; padding:12px 48px 18px; flex-shrink:0; border-top:1px solid rgba(255,255,255,.07); position:relative; z-index:1; }
+    .s-footer-light { border-top:1px solid var(--l-border); }
+    .s-footer span  { font-size:10px; color:var(--muted); }
+    .s-footer-light span { color:var(--l-muted); }
+
+    /* ── HELPERS ── */
+    .teal{color:var(--teal)} .purple{color:var(--purple)} .pink{color:var(--pink)}
+    .word{display:inline-block}
+    .sec-label { display:flex; align-items:center; gap:10px; font-size:9px; font-weight:700; letter-spacing:.44em; text-transform:uppercase; color:var(--teal); margin-bottom:14px; }
+    .sec-label::before { content:''; width:16px; height:2px; background:var(--teal); border-radius:1px; flex-shrink:0; }
+    .sec-label-dark { color:var(--purple); }
+    .sec-label-dark::before { background:var(--purple); }
+
+    /* ════════════════════════════════
+       SLIDE 0 — CAPA (dark)
+    ════════════════════════════════ */
+    .s0-hero { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:0 80px; position:relative; z-index:1; }
+    .s0-eyebrow { font-size:9.5px; font-weight:600; letter-spacing:.42em; text-transform:uppercase; color:var(--muted); margin-bottom:20px; }
+    .s0-title { font-family:'Clash Display',sans-serif; font-size:clamp(52px,7.2vw,94px); font-weight:700; line-height:.9; letter-spacing:-.04em; text-transform:uppercase; margin-bottom:26px; }
+    .s0-title .line { display:block; overflow:hidden; }
+    .s0-sub { font-size:15px; font-weight:400; line-height:1.7; color:rgba(255,255,255,.5); max-width:480px; margin-bottom:32px; }
+    .s0-pill { display:inline-flex; align-items:center; gap:8px; font-size:10.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--dark); background:var(--teal); padding:12px 28px; border-radius:999px; box-shadow:0 0 28px rgba(7,201,172,.35); }
+    .s0-tags { display:flex; gap:8px; }
+    .s-tag { font-size:8.5px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; padding:4px 12px; border-radius:4px; }
+    .tag-teal   { color:var(--teal);   background:rgba(7,201,172,.1);   border:1px solid rgba(7,201,172,.2); }
+    .tag-purple { color:var(--purple); background:rgba(131,104,248,.1); border:1px solid rgba(131,104,248,.2); }
+    .tag-pink   { color:var(--pink);   background:rgba(254,70,108,.1);  border:1px solid rgba(254,70,108,.2); }
+
+    /* ════════════════════════════════
+       SLIDE 1 — QUEM SOMOS (light)
+    ════════════════════════════════ */
+    .s1-main { flex:1; display:grid; grid-template-columns:2fr 3fr; gap:36px; padding:16px 48px 0; position:relative; z-index:1; overflow:hidden; min-height:0; }
+    .s1-left { display:flex; flex-direction:column; justify-content:center; }
+    .s1-title { font-family:'Clash Display',sans-serif; font-size:clamp(28px,3.8vw,50px); font-weight:700; line-height:1; letter-spacing:-.03em; text-transform:uppercase; color:var(--l-txt); margin-bottom:22px; }
+    .s1-title .purple { color:var(--purple); }
+    .s1-manifesto { padding:18px 22px; margin-top:0; }
+    .s1-manifesto-q { font-family:'Clash Display',sans-serif; font-size:18px; font-weight:700; line-height:1.3; letter-spacing:-.015em; color:var(--l-txt); margin-bottom:10px; }
+    .s1-manifesto-sub { font-size:13.5px; line-height:1.7; color:var(--l-muted); }
+    .s1-right { display:grid; grid-template-columns:1fr 1fr; gap:10px; align-content:center; }
+    .info-card { padding:24px; position:relative; overflow:hidden; }
+    .info-card__accent { width:100%; height:3px; border-radius:2px; margin-bottom:16px; }
+    .info-card__title { font-family:'Clash Display',sans-serif; font-size:17px; font-weight:700; letter-spacing:-.01em; color:var(--l-txt); margin-bottom:10px; }
+    .info-card__text  { font-size:14px; line-height:1.7; color:var(--l-muted); }
+
+    /* ════════════════════════════════
+       SLIDE 2 — SERVIÇOS (dark)
+    ════════════════════════════════ */
+    .s2-main { flex:1; display:flex; flex-direction:column; padding:14px 48px 0; position:relative; z-index:1; overflow:hidden; min-height:0; }
+    .s2-head { margin-bottom:16px; }
+    .s2-title { font-family:'Clash Display',sans-serif; font-size:clamp(28px,3.4vw,46px); font-weight:700; line-height:1; letter-spacing:-.03em; text-transform:uppercase; }
+    .svc-grid { display:grid; grid-template-columns:repeat(3,1fr); grid-template-rows:repeat(3,1fr); gap:10px; flex:1; }
+    .svc-card { padding:22px; display:flex; flex-direction:column; transition:transform .25s; }
+    .svc-card:hover { transform:translateY(-3px); }
+    .svc-card__bar { width:100%; height:3px; border-radius:2px; margin-bottom:14px; }
+    .svc-icon { font-size:26px; margin-bottom:11px; }
+    .svc-name { font-family:'Clash Display',sans-serif; font-size:18px; font-weight:700; letter-spacing:-.01em; margin-bottom:9px; }
+    .svc-desc { font-size:13.5px; line-height:1.62; color:rgba(255,255,255,.62); }
+
+    /* ════════════════════════════════
+       SLIDE 3 — PORTFÓLIO (light)
+    ════════════════════════════════ */
+    .s3-main { flex:1; display:flex; flex-direction:column; padding:14px 48px 0; position:relative; z-index:1; overflow-y:auto; min-height:0; scrollbar-width:none; }
+    .s3-main::-webkit-scrollbar { display:none; }
+    .s3-head { margin-bottom:16px; }
+    .s3-title { font-family:'Clash Display',sans-serif; font-size:clamp(28px,3.4vw,46px); font-weight:700; line-height:1; letter-spacing:-.03em; text-transform:uppercase; color:var(--l-txt); }
+    .port-tag { font-size:9px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; padding:4px 11px; border-radius:4px; }
+    .port-tag-dark   { color:var(--l-txt); background:rgba(0,0,0,.08); border:1px solid rgba(0,0,0,.12); }
+    .port-tag-teal   { color:var(--teal);  background:rgba(7,201,172,.12); border:1px solid rgba(7,201,172,.3); }
+    .port-tag-purple { color:var(--purple); background:rgba(131,104,248,.12); border:1px solid rgba(131,104,248,.3); }
+    .port-tag-gold   { color:#8A6000; background:rgba(138,96,0,.1); border:1px solid rgba(138,96,0,.3); }
+    .port-tag-pink   { color:var(--pink); background:rgba(254,70,108,.1); border:1px solid rgba(254,70,108,.28); }
+    .port-grid-v2 { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; align-items:start; padding-bottom:14px; }
+    .pcard { display:flex; flex-direction:column; text-decoration:none; color:inherit; transition:transform .25s, box-shadow .25s; border-radius:14px; overflow:hidden; }
+    .pcard:hover { transform:translateY(-3px); box-shadow:0 16px 40px rgba(0,0,0,.12); }
+    .pcard__video { width:100%; overflow:hidden; flex-shrink:0; background:#0a0a0a; }
+    .pcard__video video { width:100%; height:auto; display:block; }
+    .pcard__info { padding:13px 15px 15px; display:flex; flex-direction:column; gap:4px; background:rgba(255,255,255,.62); backdrop-filter:blur(20px); border-top:1px solid rgba(255,255,255,.85); }
+    .pcard__tags { display:flex; gap:5px; flex-wrap:wrap; margin-bottom:3px; }
+    .pcard__name { font-family:'Clash Display',sans-serif; font-size:14px; font-weight:700; letter-spacing:-.01em; color:var(--l-txt); line-height:1.2; }
+    .pcard__cat  { font-size:10.5px; color:var(--l-muted); font-weight:500; }
+    .pcard__desc { font-size:11.5px; line-height:1.58; color:var(--l-muted); margin-top:2px; }
+    .pcard__link { display:inline-flex; align-items:center; gap:5px; font-size:9px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--purple); text-decoration:none; margin-top:5px; transition:gap .2s,opacity .2s; }
+    .pcard__link:hover { gap:9px; opacity:.7; }
+
+    /* ════════════════════════════════
+       SLIDE 4 — DIFERENCIAIS (dark)
+    ════════════════════════════════ */
+    .s4-main { flex:1; display:grid; grid-template-columns:3fr 2fr; gap:44px; padding:16px 48px 0; position:relative; z-index:1; overflow:hidden; min-height:0; }
+    .s4-left { display:flex; flex-direction:column; }
+    .s4-title { font-family:'Clash Display',sans-serif; font-size:clamp(28px,3.4vw,46px); font-weight:700; line-height:1; letter-spacing:-.03em; text-transform:uppercase; margin-bottom:20px; }
+    .diff-list { display:flex; flex-direction:column; gap:10px; flex:1; }
+    .diff-item { display:flex; align-items:flex-start; gap:22px; padding:20px 24px; }
+    .diff-num { font-family:'Clash Display',sans-serif; font-size:38px; font-weight:700; line-height:1; letter-spacing:-.04em; flex-shrink:0; width:58px; }
+    .diff-title { font-family:'Clash Display',sans-serif; font-size:18px; font-weight:700; letter-spacing:-.01em; margin-bottom:7px; }
+    .diff-text  { font-size:14px; line-height:1.68; color:rgba(255,255,255,.62); }
+    .s4-right { display:flex; flex-direction:column; gap:10px; justify-content:center; }
+    .stat-card { padding:20px; text-align:center; flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+    .stat-num  { font-family:'Clash Display',sans-serif; font-weight:700; line-height:1; display:flex; align-items:baseline; gap:2px; }
+    .stat-val    { font-size:clamp(34px,3.8vw,52px); }
+    .stat-suffix { font-size:26px; opacity:.6; }
+    .stat-lbl { font-size:11px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin-top:10px; }
+
+    /* ════════════════════════════════
+       SLIDE 5 — CONTATO (dark)
+    ════════════════════════════════ */
+    .s5-hero { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:0 80px; position:relative; z-index:1; }
+    .s5-title { font-family:'Clash Display',sans-serif; font-size:clamp(42px,5.5vw,72px); font-weight:700; line-height:.95; letter-spacing:-.04em; text-transform:uppercase; margin-bottom:18px; }
+    .s5-sub   { font-size:14px; line-height:1.7; color:rgba(255,255,255,.48); max-width:440px; margin-bottom:30px; }
+    .contact-rows { display:flex; flex-direction:column; gap:11px; align-items:center; }
+    .contact-row  { display:flex; align-items:center; gap:12px; font-size:13px; font-weight:500; }
+    .c-icon { width:32px; height:32px; border-radius:50%; background:rgba(7,201,172,.08); border:1px solid rgba(7,201,172,.2); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .c-icon.ci-purple { background:rgba(131,104,248,.08); border-color:rgba(131,104,248,.2); }
+    .c-icon svg { width:13px; height:13px; }
+    .s5-bottom { padding:12px 48px 18px; border-top:1px solid rgba(255,255,255,.06); display:flex; justify-content:space-between; align-items:center; position:relative; z-index:1; }
+    .s5-copy { font-size:9px; color:var(--muted); }
+    .s5-site { font-size:9.5px; color:var(--teal); font-weight:600; }
+
+    /* ════════════════════════════════
+       MOBILE
+    ════════════════════════════════ */
+    @media (max-width: 768px) {
+      .s-header { padding:14px 18px 0; }
+      .s-logo,.s-logo-dark { height:32px; }
+      .s-footer { padding:8px 18px 12px; }
+      .s-footer span { font-size:9px; }
+      #btn-prev { left:4px; width:32px; height:32px; }
+      #btn-next { right:4px; width:32px; height:32px; }
+      #nav-dots { bottom:16px; }
+      .dot { width:6px; height:6px; }
+      .dot.active { width:18px; }
+
+      /* slide 0 */
+      .s0-hero { padding:0 20px; }
+      .s0-title { font-size:clamp(44px,13vw,62px); }
+      .s0-sub   { font-size:13px; }
+      .s0-pill  { font-size:9px; padding:10px 18px; }
+      .s0-tags  { flex-wrap:wrap; gap:5px; }
+      .s-tag    { font-size:8px; }
+
+      /* slide 1 */
+      .s1-main  { grid-template-columns:1fr!important; overflow-y:auto!important; padding:10px 18px 8px; gap:12px; }
+      .s1-title { font-size:26px; }
+      .s1-right { grid-template-columns:1fr 1fr; gap:8px; }
+      .info-card { padding:12px; }
+      .info-card__title { font-size:11.5px; }
+      .info-card__text  { font-size:10px; }
+
+      /* slide 2 */
+      .s2-main  { overflow-y:auto!important; padding:10px 18px 8px; }
+      .s2-title { font-size:24px; }
+      .svc-grid { grid-template-columns:repeat(2,1fr)!important; grid-template-rows:repeat(5,auto)!important; gap:7px; }
+      .svc-card { padding:12px; }
+      .svc-name { font-size:12px; }
+      .svc-desc { font-size:10px; }
+
+      /* slide 3 */
+      .s3-main  { overflow-y:auto!important; padding:10px 18px 8px; }
+      .s3-title { font-size:24px; }
+      .port-grid-v2 { grid-template-columns:repeat(2,1fr)!important; gap:8px; }
+      .pcard__name { font-size:12px; }
+      .pcard__cat  { font-size:9.5px; }
+      .pcard__desc { display:none; }
+      .pcard__tags { display:none; }
+      .pcard__link { font-size:8px; margin-top:3px; }
+      .pcard__info { padding:9px 10px 10px; gap:2px; }
+
+      /* slide 4 */
+      .s4-main  { grid-template-columns:1fr!important; overflow-y:auto!important; padding:10px 18px 8px; gap:12px; }
+      .s4-title { font-size:24px; }
+      .diff-item { padding:10px 14px; gap:12px; }
+      .diff-num  { font-size:22px; width:36px; }
+      .diff-title { font-size:12px; }
+      .diff-text  { font-size:10.5px; }
+      .s4-right  { flex-direction:row!important; gap:8px; }
+      .stat-card { padding:10px 6px; }
+      .stat-val  { font-size:26px; }
+      .stat-lbl  { font-size:8px; }
+
+      /* slide 5 */
+      .s5-hero  { padding:10px 22px 0; justify-content:flex-start; overflow-y:auto!important; }
+      .s5-title { font-size:clamp(34px,10vw,50px); }
+      .s5-sub   { font-size:12.5px; }
+      .contact-row { font-size:12px; }
+      .s5-bottom { padding:8px 18px 12px; }
+      .s5-copy  { display:none; }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="grain"></canvas>
+  <div id="progress"></div>
+
+  <div id="nav-dots">
+    <button class="dot active" data-i="0"></button>
+    <button class="dot" data-i="1"></button>
+    <button class="dot" data-i="2"></button>
+    <button class="dot" data-i="3"></button>
+    <button class="dot" data-i="4"></button>
+    <button class="dot" data-i="5"></button>
+  </div>
+
+  <button class="nav-btn" id="btn-prev">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3L5 8l5 5"/></svg>
+  </button>
+  <button class="nav-btn" id="btn-next">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg>
+  </button>
+
+  <div id="slides">
+
+    <!-- ══ SLIDE 0: CAPA (dark) ══ -->
+    <div class="slide s0 s-active">
+      <div class="glow" style="width:520px;height:520px;top:-120px;left:12%;background:radial-gradient(circle,rgba(131,104,248,.22)0%,transparent 70%)"></div>
+      <div class="glow" style="width:400px;height:400px;bottom:-80px;right:8%;background:radial-gradient(circle,rgba(7,201,172,.18)0%,transparent 70%);animation-delay:2.5s"></div>
+
+      <header class="s-header">
+        <img src="Giff logo inteira.gif" class="s-logo" alt="Geez Marketing">
+        <span class="s-badge">Apresentação Institucional 2025</span>
+      </header>
+
+      <main class="s0-hero">
+        <p class="s0-eyebrow">Agência de Marketing &amp; Branding</p>
+        <h1 class="s0-title">
+          <span class="line"><span class="word teal">Vem</span>&nbsp;<span class="word">e veja</span></span>
+          <span class="line"><span class="word">com seus</span></span>
+          <span class="line"><span class="word">próprios</span>&nbsp;<span class="word"><em style="font-style:italic;color:var(--purple)">olhos.</em></span></span>
+        </h1>
+        <p class="s0-sub">Design estratégico, identidade visual e presença digital<br>para marcas que querem liderar.</p>
+        <div class="s0-pill">
+          <svg width="13" height="13" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.3"/><path d="M4 6l1.5 1.5L8 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          geezmarketing.com.br
+        </div>
+      </main>
+
+      <footer class="s-footer">
+        <span>Alameda Terracota, 185 — Sala 215 · São Caetano do Sul · SP</span>
+        <div class="s0-tags">
+          <span class="s-tag tag-teal">Branding</span>
+          <span class="s-tag tag-purple">Web Design</span>
+          <span class="s-tag tag-pink">Marketing</span>
+        </div>
+      </footer>
+    </div>
+
+    <!-- ══ SLIDE 1: QUEM SOMOS (light) ══ -->
+    <div class="slide s1 s-light">
+      <div class="glow" style="width:500px;height:500px;top:-80px;right:-80px;background:radial-gradient(circle,rgba(131,104,248,.1)0%,transparent 70%)"></div>
+      <div class="glow" style="width:350px;height:350px;bottom:-60px;left:5%;background:radial-gradient(circle,rgba(7,201,172,.1)0%,transparent 70%);animation-delay:3s"></div>
+
+      <header class="s-header">
+        <img src="Giff logo inteira.gif" class="s-logo-dark" alt="Geez Marketing">
+        <span class="s-num-dark">02 / 06</span>
+      </header>
+
+      <main class="s1-main">
+        <div class="s1-left">
+          <p class="sec-label sec-label-dark">Quem somos</p>
+          <h2 class="s1-title">
+            <span class="word">Mais do que</span><br>
+            <span class="word">uma <span class="purple">agência.</span></span>
+          </h2>
+          <div class="lg-light s1-manifesto">
+            <p class="s1-manifesto-q">"Edifique sua empresa com <span class="purple">alto padrão</span> de <span class="teal">design</span> e <span class="pink">marketing.</span>"</p>
+            <p class="s1-manifesto-sub">Acreditamos que toda empresa merece uma identidade visual que inspire confiança e presença digital que gere autoridade.</p>
+          </div>
+        </div>
+        <div class="s1-right">
+          <div class="lg-light info-card">
+            <div class="info-card__accent" style="background:var(--teal)"></div>
+            <p class="info-card__title">Nossa Missão</p>
+            <p class="info-card__text">Transformar marcas comuns em referências de mercado com estratégia, identidade visual forte e presença digital que gera resultado real.</p>
+          </div>
+          <div class="lg-light info-card">
+            <div class="info-card__accent" style="background:var(--purple)"></div>
+            <p class="info-card__title">Nossa Visão</p>
+            <p class="info-card__text">Ser a agência de referência em alta performance criativa no Brasil, unindo estética de luxo com comunicação que converte.</p>
+          </div>
+          <div class="lg-light info-card">
+            <div class="info-card__accent" style="background:var(--pink)"></div>
+            <p class="info-card__title">Nossa Abordagem</p>
+            <p class="info-card__text">Cada projeto começa com escuta profunda. Entendemos o negócio antes de criar — o resultado é design com sentido estratégico.</p>
+          </div>
+          <div class="lg-light info-card">
+            <div class="info-card__accent" style="background:var(--teal)"></div>
+            <p class="info-card__title">Nosso Compromisso</p>
+            <p class="info-card__text">Entregamos além do prazo e do briefing. Parceria real, comunicação direta e projetos que o cliente tem orgulho de mostrar.</p>
+          </div>
+        </div>
+      </main>
+
+      <footer class="s-footer s-footer-light">
+        <span>geezmarketing.com.br</span>
+        <span>(11) 94702-6961</span>
+      </footer>
+    </div>
+
+    <!-- ══ SLIDE 2: SERVIÇOS (dark) ══ -->
+    <div class="slide s2">
+      <div class="glow" style="width:420px;height:420px;top:-80px;right:5%;background:radial-gradient(circle,rgba(7,201,172,.18)0%,transparent 70%)"></div>
+      <div class="glow" style="width:300px;height:300px;bottom:-60px;left:10%;background:radial-gradient(circle,rgba(131,104,248,.14)0%,transparent 70%);animation-delay:3s"></div>
+
+      <header class="s-header">
+        <img src="Giff logo inteira.gif" class="s-logo" alt="Geez Marketing">
+        <span class="s-num">03 / 06</span>
+      </header>
+
+      <main class="s2-main">
+        <div class="s2-head">
+          <p class="sec-label">O que fazemos</p>
+          <h2 class="s2-title"><span class="word">Nossos</span> <span class="word purple">serviços</span></h2>
+        </div>
+        <div class="svc-grid">
+          <div class="lg svc-card"><div class="svc-card__bar" style="background:var(--teal)"></div><span class="svc-icon">🎨</span><p class="svc-name">Branding</p><p class="svc-desc">Construção de marca completa — naming, símbolo, paleta e posicionamento estratégico.</p></div>
+          <div class="lg svc-card"><div class="svc-card__bar" style="background:var(--purple)"></div><span class="svc-icon">🖥️</span><p class="svc-name">Web Design</p><p class="svc-desc">Sites premium e landing pages com foco em conversão e estética de alto padrão.</p></div>
+          <div class="lg svc-card"><div class="svc-card__bar" style="background:var(--pink)"></div><span class="svc-icon">📱</span><p class="svc-name">Marketing Digital</p><p class="svc-desc">Gestão de tráfego pago, campanhas nas principais plataformas e crescimento online.</p></div>
+          <div class="lg svc-card"><div class="svc-card__bar" style="background:var(--teal)"></div><span class="svc-icon">✏️</span><p class="svc-name">Identidade Visual</p><p class="svc-desc">Sistemas visuais coerentes — papelaria, apresentações, uniformes e aplicações.</p></div>
+          <div class="lg svc-card"><div class="svc-card__bar" style="background:var(--purple)"></div><span class="svc-icon">📐</span><p class="svc-name">UI / UX Design</p><p class="svc-desc">Interfaces digitais intuitivas e bonitas para apps, painéis e produtos digitais.</p></div>
+          <div class="lg svc-card"><div class="svc-card__bar" style="background:var(--pink)"></div><span class="svc-icon">✍️</span><p class="svc-name">Conteúdo</p><p class="svc-desc">Copy, posts, roteiros e estratégia editorial para fortalecer sua presença digital.</p></div>
+          <div class="lg svc-card"><div class="svc-card__bar" style="background:var(--teal)"></div><span class="svc-icon">🖨️</span><p class="svc-name">Gráfica</p><p class="svc-desc">Impressos de alta qualidade — folders, banners, cartões, embalagens e PDV.</p></div>
+          <div class="lg svc-card"><div class="svc-card__bar" style="background:var(--purple)"></div><span class="svc-icon">🎬</span><p class="svc-name">Audiovisual</p><p class="svc-desc">Vídeos institucionais, reels, motion graphics e animações para sua marca.</p></div>
+          <div class="lg svc-card"><div class="svc-card__bar" style="background:var(--pink)"></div><span class="svc-icon">🎥</span><p class="svc-name">Video Maker</p><p class="svc-desc">Produção completa de vídeos — roteiro, captação, edição e entrega em alta qualidade para redes sociais e eventos.</p></div>
+        </div>
+      </main>
+
+      <footer class="s-footer">
+        <span>geezmarketing.com.br</span>
+        <span>(11) 94702-6961</span>
+      </footer>
+    </div>
+
+    <!-- ══ SLIDE 3: PORTFÓLIO (light) ══ -->
+    <div class="slide s3 s-light">
+      <div class="glow" style="width:400px;height:400px;top:-60px;left:50%;transform:translateX(-50%);background:radial-gradient(circle,rgba(131,104,248,.1)0%,transparent 70%)"></div>
+
+      <header class="s-header">
+        <img src="Giff logo inteira.gif" class="s-logo-dark" alt="Geez Marketing">
+        <span class="s-num-dark">04 / 06</span>
+      </header>
+
+      <main class="s3-main">
+        <div class="s3-head">
+          <p class="sec-label sec-label-dark">Nossos trabalhos</p>
+          <h2 class="s3-title"><span class="word">Projetos em</span> <span class="word purple">destaque</span></h2>
+        </div>
+        <div class="port-grid-v2">
+
+          <a href="https://www.axisinvestments.com.br" target="_blank" class="pcard">
+            <div class="pcard__video"><video muted loop playsinline data-src="https://apresentacao.geezmarketing.com.br/videos-web/axisinvestments-video.mp4"></video></div>
+            <div class="pcard__info">
+              <div class="pcard__tags"><span class="port-tag port-tag-gold">Web Design</span><span class="port-tag port-tag-dark">Investimentos</span></div>
+              <p class="pcard__name">Axis Investments</p>
+              <p class="pcard__cat">Gestão de Investimentos · São Paulo</p>
+              <p class="pcard__desc">Site institucional premium com presença digital de autoridade.</p>
+              <span class="pcard__link">Ver projeto →</span>
+            </div>
+          </a>
+
+          <a href="https://ziontecnologias.com.br" target="_blank" class="pcard">
+            <div class="pcard__video"><video muted loop playsinline data-src="https://apresentacao.geezmarketing.com.br/videos-web/ziontecnologias-video.mp4"></video></div>
+            <div class="pcard__info">
+              <div class="pcard__tags"><span class="port-tag port-tag-teal">Web Design</span><span class="port-tag port-tag-dark">Tech</span></div>
+              <p class="pcard__name">Zion Tecnologias</p>
+              <p class="pcard__cat">Empresa de Tecnologia · São Paulo</p>
+              <p class="pcard__desc">Identidade visual moderna e autoridade digital para empresa de TI.</p>
+              <span class="pcard__link">Ver projeto →</span>
+            </div>
+          </a>
+
+          <div class="pcard">
+            <div class="pcard__video"><video muted loop playsinline data-src="https://apresentacao.geezmarketing.com.br/videos-web/video-duavesso.mp4"></video></div>
+            <div class="pcard__info">
+              <div class="pcard__tags"><span class="port-tag port-tag-purple">Web Design</span><span class="port-tag port-tag-dark">Beleza</span></div>
+              <p class="pcard__name">Duavesso Studio Coiffeur</p>
+              <p class="pcard__cat">Studio de Cabeleireiro · São Paulo</p>
+              <p class="pcard__desc">Site elegante com identidade sofisticada para studio premium.</p>
+              <span class="pcard__link">Ver projeto →</span>
+            </div>
+          </div>
+
+          <div class="pcard">
+            <div class="pcard__video"><video muted loop playsinline data-src="https://apresentacao.geezmarketing.com.br/videos-web/solucaoradiologia-video.mp4"></video></div>
+            <div class="pcard__info">
+              <div class="pcard__tags"><span class="port-tag port-tag-teal">Web Design</span><span class="port-tag port-tag-dark">Saúde</span></div>
+              <p class="pcard__name">Solução Radiologia Digital</p>
+              <p class="pcard__cat">Radiologia · São Paulo</p>
+              <p class="pcard__desc">Site institucional com foco em credibilidade e conversão.</p>
+              <span class="pcard__link">Em breve →</span>
+            </div>
+          </div>
+
+          <a href="https://imobiliariatrestorres.com.br" target="_blank" class="pcard">
+            <div class="pcard__video"><video muted loop playsinline data-src="https://apresentacao.geezmarketing.com.br/videos-web/trestorres-video.mp4"></video></div>
+            <div class="pcard__info">
+              <div class="pcard__tags"><span class="port-tag port-tag-gold">Web Design</span><span class="port-tag port-tag-dark">Imóveis</span></div>
+              <p class="pcard__name">Imobiliária Três Torres</p>
+              <p class="pcard__cat">Imobiliária · São Paulo</p>
+              <p class="pcard__desc">Site profissional com foco em captação de leads qualificados.</p>
+              <span class="pcard__link">Ver projeto →</span>
+            </div>
+          </a>
+
+          <a href="https://autrinarquitetura.com" target="_blank" class="pcard">
+            <div class="pcard__video"><video muted loop playsinline data-src="https://apresentacao.geezmarketing.com.br/videos-web/autrinarquitetura-video.mp4"></video></div>
+            <div class="pcard__info">
+              <div class="pcard__tags"><span class="port-tag port-tag-dark">Web Design</span><span class="port-tag port-tag-dark">Arquitetura</span></div>
+              <p class="pcard__name">Autrin Arquitetura</p>
+              <p class="pcard__cat">Escritório de Arquitetura · São Paulo</p>
+              <p class="pcard__desc">Site premium com portfólio de projetos e estética refinada.</p>
+              <span class="pcard__link">Ver projeto →</span>
+            </div>
+          </a>
+
+          <div class="pcard">
+            <div class="pcard__video"><video muted loop playsinline data-src="https://apresentacao.geezmarketing.com.br/videos-web/estetica-monica-video.mp4"></video></div>
+            <div class="pcard__info">
+              <div class="pcard__tags"><span class="port-tag port-tag-gold">Web Design</span><span class="port-tag port-tag-dark">Estética</span></div>
+              <p class="pcard__name">Dra. Mônica Lima</p>
+              <p class="pcard__cat">Clínica de Estética Avançada · São Paulo</p>
+              <p class="pcard__desc">Site premium minimalista com agendamento via WhatsApp.</p>
+            </div>
+          </div>
+
+          <a href="https://graficacromoprint.com.br" target="_blank" class="pcard">
+            <div class="pcard__video"><video muted loop playsinline data-src="https://apresentacao.geezmarketing.com.br/videos-web/graficacromoprint-video.mp4"></video></div>
+            <div class="pcard__info">
+              <div class="pcard__tags"><span class="port-tag port-tag-teal">Web Design</span><span class="port-tag port-tag-dark">Gráfica</span></div>
+              <p class="pcard__name">Gráfica Cromoprint</p>
+              <p class="pcard__cat">Gráfica e Impressão · São Paulo</p>
+              <p class="pcard__desc">Site com catálogo de produtos e captação de orçamentos.</p>
+              <span class="pcard__link">Ver projeto →</span>
+            </div>
+          </a>
+
+          <a href="https://www.mendezdiniz.com.br" target="_blank" class="pcard">
+            <div class="pcard__video"><video muted loop playsinline data-src="https://apresentacao.geezmarketing.com.br/videos-web/mendezdiniz-video.mp4"></video></div>
+            <div class="pcard__info">
+              <div class="pcard__tags"><span class="port-tag port-tag-dark">Web Design</span><span class="port-tag port-tag-dark">Advocacia</span></div>
+              <p class="pcard__name">Mendez &amp; Diniz</p>
+              <p class="pcard__cat">Escritório de Advocacia · São Paulo</p>
+              <p class="pcard__desc">Posicionamento jurídico sólido e transmissão de credibilidade.</p>
+              <span class="pcard__link">Ver projeto →</span>
+            </div>
+          </a>
+
+          <a href="https://serralheriafamiliaunida.com.br" target="_blank" class="pcard">
+            <div class="pcard__video"><video muted loop playsinline data-src="https://apresentacao.geezmarketing.com.br/videos-web/serralheriafamiliaunida-video.mp4"></video></div>
+            <div class="pcard__info">
+              <div class="pcard__tags"><span class="port-tag port-tag-teal">Web Design</span><span class="port-tag port-tag-dark">Serralheria</span></div>
+              <p class="pcard__name">Família Unida Serralheria</p>
+              <p class="pcard__cat">Serralheria · São Paulo</p>
+              <p class="pcard__desc">Galeria de serviços e captação de leads locais.</p>
+              <span class="pcard__link">Ver projeto →</span>
+            </div>
+          </a>
+
+          <a href="https://refrigeracaofamiliaunida.com.br" target="_blank" class="pcard">
+            <div class="pcard__video"><video muted loop playsinline data-src="https://apresentacao.geezmarketing.com.br/videos-web/refrigeracaofamiliaunida-video.mp4"></video></div>
+            <div class="pcard__info">
+              <div class="pcard__tags"><span class="port-tag port-tag-teal">Web Design</span><span class="port-tag port-tag-dark">Refrigeração</span></div>
+              <p class="pcard__name">Família Unida Refrigeração</p>
+              <p class="pcard__cat">Refrigeração e Climatização · São Paulo</p>
+              <p class="pcard__desc">Call-to-action direto para orçamentos e serviços.</p>
+              <span class="pcard__link">Ver projeto →</span>
+            </div>
+          </a>
+
+          <a href="https://residencialfamiliaunida.com.br" target="_blank" class="pcard">
+            <div class="pcard__video"><video muted loop playsinline data-src="https://apresentacao.geezmarketing.com.br/videos-web/residencialfamiliaunida-video.mp4"></video></div>
+            <div class="pcard__info">
+              <div class="pcard__tags"><span class="port-tag port-tag-gold">Web Design</span><span class="port-tag port-tag-dark">Residencial</span></div>
+              <p class="pcard__name">Família Unida Residencial</p>
+              <p class="pcard__cat">Imóveis e Residencial · São Paulo</p>
+              <p class="pcard__desc">Portfólio de imóveis com identidade visual de confiança.</p>
+              <span class="pcard__link">Ver projeto →</span>
+            </div>
+          </a>
+
+          <a href="https://tjassessoria.com.br" target="_blank" class="pcard">
+            <div class="pcard__video"><video muted loop playsinline data-src="https://apresentacao.geezmarketing.com.br/videos-web/tjassessoria-video.mp4"></video></div>
+            <div class="pcard__info">
+              <div class="pcard__tags"><span class="port-tag port-tag-purple">Web Design</span><span class="port-tag port-tag-dark">Assessoria</span></div>
+              <p class="pcard__name">TJ Assessoria</p>
+              <p class="pcard__cat">Assessoria Empresarial · São Paulo</p>
+              <p class="pcard__desc">Posicionamento estratégico para assessoria de negócios.</p>
+              <span class="pcard__link">Ver projeto →</span>
+            </div>
+          </a>
+
+          <div class="pcard">
+            <div class="pcard__video"><video muted loop playsinline data-src="https://apresentacao.geezmarketing.com.br/videos-web/geezi-site-video.mp4"></video></div>
+            <div class="pcard__info">
+              <div class="pcard__tags"><span class="port-tag port-tag-teal">Branding</span><span class="port-tag port-tag-purple">Web Design</span></div>
+              <p class="pcard__name">Geez Marketing</p>
+              <p class="pcard__cat">Agência de Marketing · São Caetano do Sul</p>
+              <p class="pcard__desc">Site próprio com identidade premium e autoridade de marca.</p>
+              <span class="pcard__link">Ver projeto →</span>
+            </div>
+          </div>
+
+          <a href="https://www.adegavibedrinks.com.br" target="_blank" class="pcard">
+            <div class="pcard__video"><video muted loop playsinline data-src="https://apresentacao.geezmarketing.com.br/videos-web/adegavibedrinks-video.mp4"></video></div>
+            <div class="pcard__info">
+              <div class="pcard__tags"><span class="port-tag port-tag-purple">Web Design</span><span class="port-tag port-tag-dark">Bebidas</span></div>
+              <p class="pcard__name">Adega Vibe Drinks</p>
+              <p class="pcard__cat">Adega · São Paulo</p>
+              <p class="pcard__desc">Identidade visual forte e experiência de compra imersiva.</p>
+              <span class="pcard__link">Ver projeto →</span>
+            </div>
+          </a>
+
+        </div>
+      </main>
+
+      <footer class="s-footer s-footer-light">
+        <span>geezmarketing.com.br</span>
+        <span>(11) 94702-6961</span>
+      </footer>
+    </div>
+
+    <!-- ══ SLIDE 4: DIFERENCIAIS (dark) ══ -->
+    <div class="slide s4">
+      <div class="glow" style="width:500px;height:500px;bottom:-100px;right:-60px;background:radial-gradient(circle,rgba(254,70,108,.18)0%,transparent 70%)"></div>
+      <div class="glow" style="width:320px;height:320px;top:-60px;left:5%;background:radial-gradient(circle,rgba(131,104,248,.14)0%,transparent 70%);animation-delay:3s"></div>
+
+      <header class="s-header">
+        <img src="Giff logo inteira.gif" class="s-logo" alt="Geez Marketing">
+        <span class="s-num">05 / 06</span>
+      </header>
+
+      <main class="s4-main">
+        <div class="s4-left">
+          <p class="sec-label">Por que a Geez?</p>
+          <h2 class="s4-title"><span class="word">Nossos</span> <span class="word pink">diferenciais</span></h2>
+          <div class="diff-list">
+            <div class="lg diff-item"><span class="diff-num teal">01</span><div><p class="diff-title">Design premium sem preço de agência grande</p><p class="diff-text">Nível estético de grandes agências com agilidade e atenção personalizada de uma equipe dedicada ao seu projeto.</p></div></div>
+            <div class="lg diff-item"><span class="diff-num purple">02</span><div><p class="diff-title">Visão estratégica integrada</p><p class="diff-text">Pensamos a comunicação da sua marca de forma completa — do offline ao digital, com consistência e propósito.</p></div></div>
+            <div class="lg diff-item"><span class="diff-num pink">03</span><div><p class="diff-title">Parceria real, não apenas fornecedor</p><p class="diff-text">Comunicação direta, prazos respeitados e total transparência em cada etapa do projeto.</p></div></div>
+          </div>
+        </div>
+        <div class="s4-right">
+          <div class="lg stat-card"><p class="stat-num teal"><span class="stat-val" data-target="100">0</span><span class="stat-suffix">%</span></p><p class="stat-lbl">Projetos entregues no prazo</p></div>
+          <div class="lg stat-card"><p class="stat-num purple"><span class="stat-val" data-target="8">0</span><span class="stat-suffix">+</span></p><p class="stat-lbl">Serviços integrados</p></div>
+          <div class="lg stat-card"><p class="stat-num pink"><span class="stat-val">∞</span></p><p class="stat-lbl">Revisões até a perfeição</p></div>
+        </div>
+      </main>
+
+      <footer class="s-footer">
+        <span>geezmarketing.com.br</span>
+        <span>(11) 94702-6961</span>
+      </footer>
+    </div>
+
+    <!-- ══ SLIDE 5: CONTATO (dark) ══ -->
+    <div class="slide s5">
+      <div class="glow" style="width:520px;height:520px;top:50%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(7,201,172,.13)0%,transparent 65%)"></div>
+      <div class="glow" style="width:300px;height:300px;bottom:-40px;right:8%;background:radial-gradient(circle,rgba(131,104,248,.16)0%,transparent 70%);animation-delay:3s"></div>
+
+      <header class="s-header">
+        <img src="Giff logo inteira.gif" class="s-logo" alt="Geez Marketing">
+        <span class="s-num">06 / 06</span>
+      </header>
+
+      <main class="s5-hero">
+        <p class="sec-label" style="justify-content:center">Vamos criar juntos</p>
+        <h2 class="s5-title">
+          <span class="word">Pronto para</span><br>
+          <span class="word teal">elevar</span> <span class="word">sua</span><br>
+          <span class="word">marca?</span>
+        </h2>
+        <p class="s5-sub">Entre em contato hoje mesmo. Vamos entender o seu negócio e criar algo que você vai ter orgulho de mostrar.</p>
+        <div class="contact-rows">
+          <div class="contact-row">
+            <div class="c-icon"><svg viewBox="0 0 16 16" fill="none" stroke="var(--teal)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2.5h2.5l1 2.5-1.5 1.5a9 9 0 0 0 4 4l1.5-1.5 2.5 1v2.5a1 1 0 0 1-1 1C5.5 14 2 10.5 2 3.5a1 1 0 0 1 1-1Z"/></svg></div>
+            <span>(11) 94702-6961 — WhatsApp disponível</span>
+          </div>
+          <div class="contact-row">
+            <div class="c-icon"><svg viewBox="0 0 16 16" fill="none" stroke="var(--teal)" stroke-width="1.4" stroke-linecap="round"><rect x="1.5" y="3.5" width="13" height="9" rx="1.5"/><path d="M1.5 5l6.5 4.5L14.5 5"/></svg></div>
+            <span>contato@geezpublicidade.com.br</span>
+          </div>
+          <div class="contact-row">
+            <div class="c-icon"><svg viewBox="0 0 16 16" fill="none" stroke="var(--teal)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.5C5.515 1.5 3.5 3.515 3.5 6c0 3.5 4.5 8.5 4.5 8.5s4.5-5 4.5-8.5c0-2.485-2.015-4.5-4.5-4.5Z"/><circle cx="8" cy="6" r="1.5"/></svg></div>
+            <span>Alameda Terracota, 185 — Sala 215, São Caetano do Sul</span>
+          </div>
+          <div class="contact-row">
+            <div class="c-icon ci-purple"><svg viewBox="0 0 16 16" fill="none" stroke="var(--purple)" stroke-width="1.4" stroke-linecap="round"><circle cx="8" cy="8" r="6.5"/><path d="M8 4v4l3 2"/></svg></div>
+            <span style="color:var(--muted)">Atendimento de segunda a sexta, 9h às 18h</span>
+          </div>
+        </div>
+      </main>
+
+      <div class="s5-bottom">
+        <img src="Giff logo inteira.gif" class="s-logo" style="height:32px" alt="Geez Marketing">
+        <span class="s5-copy">© 2025 Geez Marketing. Todos os direitos reservados.</span>
+        <span class="s5-site">geezmarketing.com.br</span>
+      </div>
+    </div>
+
+  </div><!-- /slides -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+  /* ── GRAIN ── */
+  const canvas = document.getElementById('grain');
+  const ctx    = canvas.getContext('2d');
+  let gW, gH, gPat;
+  function setupGrain() {
+    canvas.width = gW = innerWidth; canvas.height = gH = innerHeight;
+    const gc = document.createElement('canvas'); const gcx = gc.getContext('2d');
+    const sz = 96; gc.width = gc.height = sz;
+    const img = gcx.createImageData(sz,sz);
+    for(let i=0;i<img.data.length;i+=4){const v=Math.random()*255|0;img.data[i]=img.data[i+1]=img.data[i+2]=v;img.data[i+3]=255;}
+    gcx.putImageData(img,0,0); gPat = ctx.createPattern(gc,'repeat');
+  }
+  let gf=0;
+  (function tg(){if(++gf%3===0){ctx.clearRect(0,0,gW,gH);ctx.save();ctx.translate((Math.random()-.5)*40,(Math.random()-.5)*40);ctx.fillStyle=gPat;ctx.fillRect(-40,-40,gW+80,gH+80);ctx.restore();}requestAnimationFrame(tg);})();
+  setupGrain(); window.addEventListener('resize',setupGrain);
+
+  /* ── SLIDE SYSTEM ── */
+  const slides   = document.querySelectorAll('.slide');
+  const dots     = document.querySelectorAll('.dot');
+  const progress = document.getElementById('progress');
+  let current = 0, busy = false;
+
+  function setProgress() {
+    gsap.to(progress,{width:(current/(slides.length-1)*100)+'%',duration:.55,ease:'power2.out'});
+  }
+
+  function goTo(idx) {
+    if(idx===current||busy||idx<0||idx>=slides.length)return;
+    busy=true;
+    const dir=idx>current?1:-1;
+    const prev=slides[current], next=slides[idx];
+    gsap.to(prev,{x:-55*dir,opacity:0,duration:.42,ease:'power2.in',onComplete(){prev.classList.remove('s-active');gsap.set(prev,{x:0});}});
+    gsap.fromTo(next,{x:65*dir,opacity:0},{x:0,opacity:1,duration:.5,ease:'power2.out',delay:.18,
+      onStart(){next.classList.add('s-active');},
+      onComplete(){busy=false;triggerAnim(idx);}
+    });
+    dots[current].classList.remove('active');
+    current=idx;
+    dots[current].classList.add('active');
+    setProgress();
+    // vídeos do portfólio: só carregam/tocam enquanto o slide de projetos está ativo
+    if(idx===3){
+      document.querySelectorAll('.pcard__video video[data-src]').forEach(v=>{
+        if(!v.src) v.src=v.dataset.src;
+        v.play().catch(()=>{});
+      });
+    } else {
+      document.querySelectorAll('.pcard__video video').forEach(v=>v.pause());
+    }
+    // update arrow colors for light slides
+    const isLight = next.classList.contains('s-light');
+    document.querySelectorAll('.nav-btn').forEach(b=>{
+      b.style.background=isLight?'rgba(255,255,255,.7)':'rgba(255,255,255,.04)';
+      b.style.borderColor=isLight?'rgba(0,0,0,.1)':'rgba(255,255,255,.12)';
+      b.style.color=isLight?'rgba(0,0,0,.4)':'rgba(255,255,255,.4)';
+    });
+  }
+
+  /* ── ANIMATIONS ── */
+  function triggerAnim(i){[a0,a1,a2,a3,a4,a5][i]?.();}
+
+  function a0(){
+    const tl=gsap.timeline({defaults:{ease:'power3.out'}});
+    tl.from('.s0 .s-logo,.s0 .s-badge',{y:-20,opacity:0,stagger:.1,duration:.5})
+      .from('.s0-eyebrow',{y:18,opacity:0,duration:.5},'-=.25')
+      .from('.s0-title .word',{y:70,opacity:0,skewX:-5,stagger:.1,duration:.7},'-=.3')
+      .from('.s0-sub',{y:18,opacity:0,filter:'blur(10px)',duration:.6},'-=.25')
+      .from('.s0-pill',{scale:.72,opacity:0,duration:.5,ease:'back.out(2)'},'-=.2')
+      .from('.s0 .s-footer',{y:20,opacity:0,duration:.5},'-=.3');
+  }
+  function a1(){
+    const tl=gsap.timeline({defaults:{ease:'power3.out'}});
+    tl.from('.s1 .sec-label',{x:-28,opacity:0,duration:.45})
+      .from('.s1-title .word',{y:36,opacity:0,stagger:.1,duration:.6},'-=.2')
+      .from('.s1-manifesto',{y:18,opacity:0,duration:.5},'-=.15')
+      .from('.s1 .info-card',{y:28,opacity:0,scale:.94,stagger:.08,duration:.5},'-=.3');
+  }
+  function a2(){
+    const tl=gsap.timeline({defaults:{ease:'power3.out'}});
+    tl.from('.s2 .sec-label',{x:-28,opacity:0,duration:.4})
+      .from('.s2-title .word',{y:36,opacity:0,stagger:.1,duration:.55},'-=.2')
+      .from('.svc-card',{y:36,opacity:0,scale:.9,stagger:{amount:.5,grid:[2,4],from:'start'},duration:.45},'-=.1');
+  }
+  function a3(){
+    const tl=gsap.timeline({defaults:{ease:'power3.out'}});
+    tl.from('.s3 .sec-label',{x:-28,opacity:0,duration:.4})
+      .from('.s3-title .word',{y:36,opacity:0,stagger:.1,duration:.55},'-=.2')
+      .from('.pcard',{y:40,opacity:0,scale:.95,stagger:.04,duration:.5,ease:'power3.out'},'-=.1');
+  }
+  function a4(){
+    const tl=gsap.timeline({defaults:{ease:'power3.out'}});
+    tl.from('.s4 .sec-label',{x:-28,opacity:0,duration:.4})
+      .from('.s4-title .word',{y:36,opacity:0,stagger:.1,duration:.55},'-=.2')
+      .from('.diff-item',{x:-48,opacity:0,stagger:.12,duration:.55},'-=.2')
+      .from('.stat-card',{scale:.78,opacity:0,stagger:.1,duration:.48,ease:'back.out(1.5)'},'-=.3');
+    setTimeout(()=>{
+      document.querySelectorAll('.stat-val[data-target]').forEach(el=>{
+        const t=+el.dataset.target;let v=0;const s=t/40;
+        const ti=setInterval(()=>{v=Math.min(v+s,t);el.textContent=Math.floor(v);if(v>=t)clearInterval(ti);},22);
+      });
+    },750);
+  }
+  function a5(){
+    const tl=gsap.timeline({defaults:{ease:'power3.out'}});
+    tl.from('.s5 .sec-label',{y:16,opacity:0,duration:.4})
+      .from('.s5-title .word',{y:60,opacity:0,stagger:.12,duration:.65},'-=.2')
+      .from('.s5-sub',{y:16,opacity:0,filter:'blur(8px)',duration:.5},'-=.2')
+      .from('.contact-row',{x:-28,opacity:0,stagger:.1,duration:.44},'-=.2')
+      .from('.s5-bottom',{y:16,opacity:0,duration:.4},'-=.2');
+  }
+
+  /* ── NAVIGATION ── */
+  document.getElementById('btn-next').addEventListener('click',()=>goTo(current+1));
+  document.getElementById('btn-prev').addEventListener('click',()=>goTo(current-1));
+  dots.forEach(d=>d.addEventListener('click',()=>goTo(+d.dataset.i)));
+  document.addEventListener('keydown',e=>{
+    if(['ArrowRight','ArrowDown',' '].includes(e.key)){e.preventDefault();goTo(current+1);}
+    if(['ArrowLeft','ArrowUp'].includes(e.key)){e.preventDefault();goTo(current-1);}
+  });
+  let tx=0;
+  document.addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+  document.addEventListener('touchend',e=>{const dx=tx-e.changedTouches[0].clientX;if(Math.abs(dx)>50)goTo(dx>0?current+1:current-1);});
+
+  /* ── INIT ── */
+  setProgress();
+  setTimeout(()=>a0(),350);
+  </script>
+</body>
+</html>

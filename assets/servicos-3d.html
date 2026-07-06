@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Serviços — Geez</title>
+  <link rel="icon" type="image/gif" href="../img/Ícones Animados/Logo geez.gif" />
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/dock.css" />
+  <link rel="stylesheet" href="../css/transition.css" />
+  <style>
+    body {
+      background: #0D0D0D;
+      color: #fff;
+      font-family: 'Satoshi', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .wip {
+      text-align: center;
+      padding: 40px 24px;
+      position: relative;
+      z-index: 2;
+    }
+    .wip__label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--color-teal);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 32px;
+      padding: 8px 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(7,201,172,0.3);
+      background: rgba(7,201,172,0.06);
+    }
+    .wip__label::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-teal);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+    .wip__title {
+      font-family: 'Clash Display', sans-serif;
+      font-size: clamp(52px, 10vw, 120px);
+      font-weight: 700;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .wip__title .c-teal { color: var(--color-teal); }
+    .wip__title .c-purple { color: var(--color-purple); }
+    .wip__sub {
+      font-size: clamp(14px, 1.5vw, 18px);
+      color: rgba(255,255,255,0.5);
+      line-height: 1.7;
+      max-width: 440px;
+      margin: 0 auto 40px;
+    }
+    .wip__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--color-teal);
+      color: #0D0D0D;
+      font-family: 'Satoshi', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .wip__cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(7,201,172,0.35);
+    }
+    .wip__glow {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .wip__glow::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(131,104,248,0.12) 0%, transparent 70%);
+    }
+    .wip__glow::after {
+      content: '';
+      position: absolute;
+      top: 60%;
+      left: 40%;
+      transform: translate(-50%, -50%);
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(7,201,172,0.08) 0%, transparent 70%);
+    }
+  </style>
+</head>
+<body>
+
+  <div id="page-transition">
+    <img src="../img/Ícones Animados/Logo geez.gif" alt="Geez" draggable="false" />
+  </div>
+
+  <div class="wip__glow"></div>
+
+  <div class="wip">
+    <span class="wip__label">Em breve</span>
+    <h1 class="wip__title">
+      <span class="c-teal">Algo</span><br>
+      <span class="c-purple">incrível</span><br>
+      vem aí.
+    </h1>
+    <p class="wip__sub">
+      Nossa página de serviços está sendo preparada. Em breve você vai conhecer tudo que podemos fazer pela sua marca.
+    </p>
+    <a href="../index.html" class="wip__cta">
+      Voltar ao início
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+</body>
+</html>

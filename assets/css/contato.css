@@ -1,0 +1,248 @@
+/* =============================================
+   SECTION — CONTATO
+   ============================================= */
+.contato-section {
+  background: var(--color-bg);
+  padding: var(--section-pad) clamp(40px, 8vw, 140px);
+  padding-bottom: clamp(80px, 12vw, 160px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* linha de separação topo */
+.contato-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: clamp(40px, 8vw, 140px);
+  right: clamp(40px, 8vw, 140px);
+  height: 1px;
+  background: rgba(255,255,255,0.06);
+}
+
+/* glow teal no fundo */
+.contato-section::after {
+  content: '';
+  position: absolute;
+  bottom: -300px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(7,201,172,0.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+/* ── HEADER ── */
+.contato__header {
+  text-align: center;
+  margin-bottom: clamp(64px, 8vw, 100px);
+  position: relative;
+  z-index: 1;
+}
+
+.contato__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--color-teal);
+  margin-bottom: 28px;
+}
+
+.contato__label::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: var(--color-teal);
+}
+
+.contato__title {
+  font-family: var(--font-heading);
+  font-size: clamp(52px, 8vw, 120px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  text-transform: uppercase;
+  color: var(--color-white);
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.contato__title em {
+  font-style: normal;
+  display: block;
+  background: linear-gradient(90deg, var(--color-teal), var(--color-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.contato__sub {
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.4vw, 17px);
+  color: rgba(255,255,255,0.4);
+  margin-top: 24px;
+  opacity: 0;
+}
+
+/* ── INFO — endereço e telefone ── */
+.contato__info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(24px, 4vw, 56px);
+  flex-wrap: wrap;
+  margin-bottom: clamp(48px, 6vw, 72px);
+  position: relative;
+  z-index: 1;
+}
+
+.contato__info-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.02em;
+}
+
+.contato__info-item svg {
+  flex-shrink: 0;
+  color: var(--color-teal);
+}
+
+.contato__info-item a {
+  color: rgba(255,255,255,0.4);
+  transition: color 0.25s;
+}
+
+.contato__info-item a:hover {
+  color: var(--color-teal);
+}
+
+/* ── BOTÕES DE CTA ── */
+.contato__ctas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: clamp(80px, 10vw, 130px);
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--color-teal);
+  color: #0D0D0D;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 20px 40px;
+  border-radius: 999px;
+  transition: background 0.3s var(--ease-out), transform 0.3s var(--ease-out), box-shadow 0.3s;
+}
+
+.btn-whatsapp:hover {
+  background: #05b096;
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(7,201,172,0.3);
+}
+
+.btn-whatsapp svg {
+  flex-shrink: 0;
+}
+
+.btn-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 20px 40px;
+  border-radius: 999px;
+  transition: color 0.3s, border-color 0.3s, transform 0.3s;
+}
+
+.btn-email:hover {
+  color: var(--color-white);
+  border-color: rgba(255,255,255,0.35);
+  transform: translateY(-3px);
+}
+
+/* ── FOOTER BAR ── */
+.contato__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding-top: 40px;
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+}
+
+.contato__footer-brand {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  opacity: 0.85;
+  transition: opacity 0.25s;
+}
+
+.contato__footer-brand:hover { opacity: 1; }
+
+.contato__footer-brand img {
+  height: 30px;
+  width: auto;
+  display: block;
+}
+
+.contato__footer-copy {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 0.06em;
+  text-align: center;
+  flex: 1;
+}
+
+.contato__footer-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-shrink: 0;
+}
+
+.contato__footer-links a {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  transition: color 0.25s;
+}
+
+.contato__footer-links a:hover {
+  color: var(--color-teal);
+}

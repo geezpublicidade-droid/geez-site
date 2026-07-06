@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /apresentacao.html
+
+Sitemap: https://geezmarketing.com.br/sitemap.xml

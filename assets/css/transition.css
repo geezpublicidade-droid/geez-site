@@ -1,0 +1,32 @@
+/* =============================================
+   PAGE TRANSITION — overlay branco + logo
+   ============================================= */
+
+#page-transition {
+  position: fixed;
+  inset: 0;
+  background: #FFFFFF;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#page-transition.is-out {
+  opacity: 0;
+}
+
+#page-transition img {
+  width: clamp(80px, 10vw, 130px);
+  height: auto;
+  object-fit: contain;
+  animation: tr-breathe 1.6s ease-in-out infinite;
+}
+
+@keyframes tr-breathe {
+  0%, 100% { opacity: 1;   transform: scale(1);    }
+  50%       { opacity: 0.7; transform: scale(0.94); }
+}

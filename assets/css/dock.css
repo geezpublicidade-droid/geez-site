@@ -1,0 +1,337 @@
+/* =============================================
+   DOCK — nav fixo global — Liquid Glass
+   ============================================= */
+
+/* ── BARRA INFERIOR ── */
+.bottom-nav {
+  overflow: visible !important;
+  position: fixed !important;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9000;
+  height: 96px;
+  padding: 0 clamp(40px, 6vw, 100px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Liquid Glass */
+  background: rgba(8, 8, 8, 0.45);
+  backdrop-filter: blur(40px) saturate(180%) brightness(1.08);
+  -webkit-backdrop-filter: blur(40px) saturate(180%) brightness(1.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 -1px 0 rgba(255, 255, 255, 0.04),
+    0 -20px 60px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+/* shimmer líquido na barra */
+.bottom-nav::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    rgba(7, 201, 172, 0.04) 0%,
+    transparent 40%,
+    rgba(131, 104, 248, 0.04) 70%,
+    transparent 100%
+  );
+}
+
+/* linha de luz no topo da barra */
+.bottom-nav::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 8%;
+  width: 84%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.18) 30%,
+    rgba(7, 201, 172, 0.3) 50%,
+    rgba(255, 255, 255, 0.18) 70%,
+    transparent
+  );
+  pointer-events: none;
+}
+
+/* ── BRAND ── */
+.bottom-nav__brand {
+  position: absolute;
+  left: clamp(40px, 6vw, 100px);
+  height: 54px;
+  width: auto;
+  object-fit: contain;
+  z-index: 1;
+}
+
+/* ── CTA ── */
+.bottom-nav__cta {
+  position: absolute;
+  right: clamp(40px, 6vw, 100px);
+  z-index: 1;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-teal);
+  padding: 9px 22px;
+  border-radius: 999px;
+
+  /* Liquid Glass no botão */
+  background: rgba(7, 201, 172, 0.08);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgba(7, 201, 172, 0.35);
+  box-shadow:
+    0 4px 16px rgba(7, 201, 172, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+}
+
+.bottom-nav__cta:hover {
+  background: rgba(7, 201, 172, 0.18);
+  box-shadow:
+    0 8px 28px rgba(7, 201, 172, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+/* ── PILL DO DOCK ── */
+.dock {
+  display: flex;
+  align-items: flex-end;
+  gap: 28px;
+  padding: 12px 48px;
+  border-radius: 24px;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Liquid Glass intenso */
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(131, 104, 248, 0.06) 100%
+  );
+  backdrop-filter: blur(32px) saturate(200%) brightness(1.1);
+  -webkit-backdrop-filter: blur(32px) saturate(200%) brightness(1.1);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.35),
+    0 2px 8px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.15),
+    inset 1px 0 0 rgba(255, 255, 255, 0.06),
+    inset -1px 0 0 rgba(255, 255, 255, 0.06);
+}
+
+/* reflexo de luz no topo do pill */
+.dock::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 16px;
+  right: 16px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.35) 40%,
+    rgba(255, 255, 255, 0.35) 60%,
+    transparent
+  );
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+/* shimmer animado sobre o pill */
+.dock::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.04) 40%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.04) 60%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: liquid-shimmer 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes liquid-shimmer {
+  0%   { background-position: -100% 0; }
+  50%  { background-position: 200% 0; }
+  100% { background-position: -100% 0; }
+}
+
+/* Todos os ícones com tamanho idêntico */
+
+/* ── ÍCONE ── */
+.dock__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  cursor: pointer;
+  transform-origin: bottom center;
+  will-change: transform;
+}
+
+.dock__icon {
+  width: clamp(44px, 5vw, 64px);
+  height: clamp(44px, 5vw, 64px);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  flex-shrink: 0;
+  user-select: none;
+  pointer-events: none;
+  position: relative;
+  transition: box-shadow 0.25s;
+
+  /* Liquid Glass nos ícones sem imagem */
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.14) 0%,
+    rgba(255, 255, 255, 0.06) 100%
+  );
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.dock__item:hover .dock__icon {
+  box-shadow:
+    0 6px 20px rgba(7, 201, 172, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+/* ícone com imagem */
+.dock__icon--img {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  padding: 0;
+}
+
+.dock__icon--img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 16px;
+  display: block;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+  transition: filter 0.25s;
+}
+
+.dock__item:hover .dock__icon--img img {
+  filter: drop-shadow(0 6px 16px rgba(7, 201, 172, 0.3));
+}
+
+/* ícone com vídeo — transparente via blend mode */
+.dock__icon--video {
+  background: transparent !important;
+  border: none !important;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: none;
+  transition: box-shadow 0.3s;
+}
+
+.dock__icon--video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+  pointer-events: none;
+  mix-blend-mode: screen;   /* fundo preto some, o conteúdo brilha */
+}
+
+/* anel teal ao redor do vídeo no item ativo */
+.dock__item.is-active .dock__icon--video {
+  box-shadow:
+    0 0 0 2px rgba(7, 201, 172, 0.7),
+    0 6px 20px rgba(7, 201, 172, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.dock__item:hover .dock__icon--video {
+  box-shadow:
+    0 0 0 1.5px rgba(7, 201, 172, 0.4),
+    0 8px 24px rgba(7, 201, 172, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* ── TOOLTIP ── */
+.dock__label {
+  position: absolute;
+  bottom: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.9);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.18s;
+  z-index: 200;
+
+  /* Liquid Glass no tooltip */
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 5px 12px;
+  border-radius: 8px;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.dock__item:hover .dock__label {
+  opacity: 1;
+}
+
+/* ── PONTO INDICADOR ── */
+.dock__dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  margin-top: 4px;
+  transition: background 0.25s, box-shadow 0.25s;
+}
+
+.dock__item.is-active .dock__dot {
+  background: var(--color-teal);
+  box-shadow: 0 0 8px rgba(7, 201, 172, 0.8), 0 0 2px var(--color-teal);
+}

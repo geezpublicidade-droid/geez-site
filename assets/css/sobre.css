@@ -1,0 +1,206 @@
+/* =============================================
+   SECTION — SOBRE
+   ============================================= */
+.sobre-section {
+  background: #111;
+  padding: var(--section-pad) clamp(40px, 8vw, 140px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* glow roxo no fundo */
+.sobre-section::after {
+  content: '';
+  position: absolute;
+  bottom: -200px;
+  right: -200px;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(131,104,248,0.09) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ── LAYOUT SPLIT ── */
+.sobre__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(60px, 8vw, 120px);
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── ESQUERDA — texto ── */
+.sobre__left {}
+
+.sobre__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--color-pink);
+  margin-bottom: 32px;
+}
+
+.sobre__label::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: var(--color-pink);
+}
+
+.sobre__title {
+  font-family: var(--font-heading);
+  font-size: clamp(44px, 5.5vw, 80px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  text-transform: uppercase;
+  color: var(--color-white);
+  margin-bottom: 40px;
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.sobre__title em {
+  font-style: normal;
+  color: var(--color-teal);
+}
+
+.sobre__text {
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.4vw, 18px);
+  color: rgba(255,255,255,0.5);
+  line-height: 1.75;
+  max-width: 480px;
+  margin-bottom: 48px;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* ── NÚMEROS / STATS ── */
+.sobre__stats {
+  display: flex;
+  gap: clamp(32px, 4vw, 56px);
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.sobre__stat-num {
+  font-family: var(--font-heading);
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--color-white);
+  line-height: 1;
+  display: block;
+}
+
+.sobre__stat-num span {
+  color: var(--color-teal);
+}
+
+.sobre__stat-label {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  display: block;
+  margin-top: 8px;
+}
+
+/* ── DIREITA — card com identidade ── */
+.sobre__right {
+  position: relative;
+  opacity: 0;
+  transform: translateX(40px);
+}
+
+.sobre__card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 28px;
+  padding: clamp(40px, 5vw, 64px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* borda gradiente no card */
+.sobre__card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 28px;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(7,201,172,0.4),
+    rgba(131,104,248,0.3),
+    rgba(254,70,108,0.2),
+    transparent 60%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.sobre__card-name {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 3.5vw, 52px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.sobre__card-role {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-teal);
+  margin-bottom: 32px;
+}
+
+.sobre__card-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.07);
+  margin-bottom: 32px;
+}
+
+.sobre__card-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sobre__card-list li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.5;
+}
+
+.sobre__card-list li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-purple);
+  flex-shrink: 0;
+}

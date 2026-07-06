@@ -1,0 +1,248 @@
+/* =============================================
+   RESPONSIVE — Mobile First Overrides
+   Breakpoints: 1024px · 768px · 480px · 380px
+   ============================================= */
+
+/* ─────────────────────────────────────────────
+   TABLET  ≤ 1024px
+   ───────────────────────────────────────────── */
+@media (max-width: 1024px) {
+
+  .hero-split__right-inner {
+    padding: clamp(24px, 3.5vw, 48px);
+  }
+
+  .svc-nav { display: none; }
+
+  .bottom-nav {
+    height: 82px;
+  }
+  .bottom-nav__brand { left: clamp(24px, 3vw, 48px); height: 44px; }
+  .bottom-nav__cta   { right: clamp(24px, 3vw, 48px); }
+  .dock { gap: 16px; padding: 10px 28px; }
+}
+
+/* ─────────────────────────────────────────────
+   TABLET + PHONE  ≤ 768px
+   ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+
+  /* ── CURSOR — desativa em touch ── */
+  .cursor-g { display: none; }
+
+  /* ── MAIN CONTENT ── */
+  #main-content { padding-bottom: 80px; }
+
+  /* ══════════════════════════════════════════
+     HERO SPLIT — empilha vertical
+     ══════════════════════════════════════════ */
+  .hero-split {
+    flex-direction: column;
+    height: 100svh;
+  }
+
+  .hero-split__left {
+    width: 100%;
+    height: 40%;
+    flex-shrink: 0;
+  }
+
+  .hero-split__left::after { display: none; }
+
+  .hero-split__badge {
+    top: 14px;
+    left: 14px;
+    font-size: 9px;
+    padding: 5px 12px;
+    letter-spacing: 0.18em;
+  }
+
+  .hero-split__right {
+    flex: 1;
+    width: 100%;
+  }
+
+  .hero-split__right-inner {
+    padding: 24px 22px 20px;
+    justify-content: center;
+  }
+
+  .hero-split__eyebrow {
+    font-size: 9px;
+    padding: 5px 12px;
+    margin-bottom: 14px;
+    letter-spacing: 0.18em;
+  }
+
+  .hero-split__phrase { font-size: clamp(28px, 9vw, 48px); }
+  .hero-split__sub    { font-size: 12px; margin-top: 12px; max-width: 100%; }
+  .hero-split__cta    { margin-top: 18px; }
+
+  .ticker { padding: 8px 0; }
+  .ticker__item {
+    font-size: 9px;
+    gap: 16px;
+    padding-right: 24px;
+    letter-spacing: 0.12em;
+  }
+
+  /* ══════════════════════════════════════════
+     CARD SECTION
+     ══════════════════════════════════════════ */
+  .card-section {
+    border-radius: 20px 20px 0 0;
+    margin-top: -24px;
+  }
+
+  .manifesto {
+    grid-template-columns: 1fr;
+    height: auto;
+    overflow: visible;
+  }
+
+  .manifesto__left {
+    padding: 36px 20px 28px;
+    order: 1;
+  }
+
+  .manifesto__right {
+    order: 2;
+    height: 100vw;
+    max-height: none;
+    margin: 0 -1px; /* cobre qualquer pixel de borda do card */
+  }
+
+  .manifesto__right video {
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .manifesto__label  { font-size: 10px; padding: 6px 12px; margin-bottom: 20px; }
+  .manifesto__title  { font-size: clamp(28px, 8vw, 44px); }
+  .manifesto__sub    { font-size: 13px; }
+  .manifesto__tags   { margin-top: 20px; }
+  .manifesto__line   { margin-top: 20px; flex-direction: column; align-items: flex-start; gap: 12px; }
+  .manifesto__line-bar { width: 40px; max-width: 40px; }
+
+  .tag { font-size: 10px; padding: 5px 12px; }
+
+  /* ══════════════════════════════════════════
+     SERVIÇOS
+     ══════════════════════════════════════════ */
+  .svc-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 24px 20px 80px;
+  }
+
+  .svc-title { font-size: clamp(24px, 8vw, 40px); } /* reduzido para evitar quebra do "Identidade Visual" */
+  .svc-desc  { font-size: 13px; margin-bottom: 24px; }
+  .svc-label { font-size: 9px; padding: 6px 14px; margin-bottom: 20px; }
+
+  /* ══════════════════════════════════════════
+     FLIP LINKS — seção Sobre
+     ══════════════════════════════════════════ */
+  .section-teal {
+    min-height: auto;
+    padding-top: 56px;
+    padding-bottom: 80px;
+  }
+
+  .flip-header { padding: 0 20px; margin-bottom: 28px; }
+  .flip-header__title { font-size: clamp(20px, 6vw, 32px); }
+
+  /* ══════════════════════════════════════════
+     SEÇÃO BRANCA — Contato
+     ══════════════════════════════════════════ */
+  .section-white { min-height: auto; padding-bottom: 100px; }
+
+  /* ══════════════════════════════════════════
+     DOCK — mobile
+     ══════════════════════════════════════════ */
+  .bottom-nav {
+    height: 72px !important;
+    padding: 0 12px !important;
+    justify-content: center !important;
+  }
+
+  .bottom-nav__brand,
+  .bottom-nav__cta { display: none !important; }
+
+  .dock {
+    gap: 10px;
+    padding: 8px 18px;
+    border-radius: 16px;
+    width: fit-content;
+    max-width: calc(100vw - 20px);
+  }
+
+  .dock__icon--img img { border-radius: 10px; }
+
+  .dock__label { bottom: calc(100% + 8px); }
+
+  .popup { padding: 36px 24px; border-radius: 18px; }
+  .popup__phrase { font-size: clamp(28px, 9vw, 44px); }
+
+  /* ══════════════════════════════════════════
+     FOOTER — empilha vertical no mobile
+     ══════════════════════════════════════════ */
+  .contato__footer {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+    padding-top: 32px;
+  }
+
+  .contato__footer-copy { flex: none; }
+
+  .contato__footer-links { gap: 20px; flex-wrap: wrap; justify-content: center; }
+
+  /* ══════════════════════════════════════════
+     EM BREVE — páginas wip
+     ══════════════════════════════════════════ */
+  .wip__title  { font-size: clamp(32px, 11vw, 60px) !important; }
+  .wip__sub    { font-size: 13px !important; }
+  .wip__label  { font-size: 10px; padding: 6px 14px; margin-bottom: 20px; }
+}
+
+/* ─────────────────────────────────────────────
+   PHONE  ≤ 480px
+   ───────────────────────────────────────────── */
+@media (max-width: 480px) {
+
+  .hero-split__phrase    { font-size: clamp(24px, 8.5vw, 40px); }
+  .hero-split__right-inner { padding: 20px 18px 16px; }
+
+  .manifesto__title { font-size: clamp(24px, 8vw, 36px); }
+  .manifesto__left  { padding: 28px 16px 24px; }
+  .manifesto__right { height: 100vw; max-height: none; }
+
+  .svc-title { font-size: clamp(20px, 7vw, 34px); } /* 7vw @ 390px = 27.3px → "IDENTIDADE VISUAL" cabe em 1 linha */
+
+  .dock { gap: 8px; padding: 7px 14px; }
+
+  .btn-primary { font-size: 11px; padding: 12px 20px; }
+
+  .wip__title { font-size: clamp(28px, 10vw, 48px) !important; }
+}
+
+/* ─────────────────────────────────────────────
+   PHONE PEQUENO  ≤ 380px
+   ───────────────────────────────────────────── */
+@media (max-width: 380px) {
+
+  .hero-split__phrase    { font-size: clamp(22px, 8vw, 34px); }
+  .hero-split__right-inner { padding: 16px 14px 12px; }
+  .hero-split__sub       { font-size: 11px; margin-top: 8px; }
+  .hero-split__cta       { margin-top: 12px; }
+
+  .manifesto__title { font-size: clamp(22px, 7.5vw, 32px); }
+  .manifesto__left  { padding: 24px 14px 20px; }
+
+  .bottom-nav { height: 64px !important; }
+  .dock { gap: 6px; padding: 6px 10px; }
+
+  .wip__title { font-size: clamp(26px, 9.5vw, 40px) !important; }
+}

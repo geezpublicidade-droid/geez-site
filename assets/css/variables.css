@@ -1,0 +1,24 @@
+:root {
+  /* Cores */
+  --color-bg:       #0D0D0D;
+  --color-teal:     #07C9AC;
+  --color-purple:   #8368F8;
+  --color-pink:     #FE466C;
+  --color-accent:   #07C9AC; /* primária padrão = teal */
+  --color-white:    #FFFFFF;
+  --color-gray:     #888888;
+  --color-dark:     #111111;
+
+  /* Fontes */
+  --font-heading: 'Clash Display', sans-serif;
+  --font-body:    'Satoshi', sans-serif;
+
+  /* Espaçamentos */
+  --section-pad: clamp(48px, 7vw, 96px);
+  --container:   1280px;
+
+  /* Transições */
+  --ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:   cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-circ: cubic-bezier(0.85, 0, 0.15, 1);
+}

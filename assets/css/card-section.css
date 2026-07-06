@@ -1,0 +1,289 @@
+/* =============================================
+   CARD SECTION — tela branca com bordas
+   ============================================= */
+.card-section {
+  position: relative;
+  background: #F5F5F0;
+  border-radius: 48px 48px 0 0;
+  min-height: 100vh;
+  margin-top: -60px;   /* pequeno peek das bordas antes do scroll */
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 -24px 80px rgba(0,0,0,0.35);
+}
+
+/* detalhe de linha colorida no topo do card */
+.card-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  border-radius: 0 0 4px 4px;
+  background: linear-gradient(90deg, var(--color-teal), var(--color-purple));
+}
+
+/* =============================================
+   MANIFESTO — layout split texto | vídeo
+   ============================================= */
+.manifesto {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;          /* força a linha a preencher o container */
+  height: calc(100vh - 96px);
+  overflow: hidden;
+}
+
+.manifesto__left,
+.manifesto__right {
+  min-height: 0;
+  min-width: 0;   /* impede que tags-track (width: max-content) inflacione a coluna do grid */
+}
+
+/* lado esquerdo — texto */
+.manifesto__left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(24px, 3.5vw, 48px) clamp(24px, 3.5vw, 56px);
+  padding-right: clamp(16px, 2vw, 36px);
+}
+
+/* lado direito — vídeo encaixado */
+.manifesto__right {
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+}
+
+.manifesto__right video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  z-index: 0;
+}
+
+/* overlay sutil sobre o vídeo */
+.manifesto__right::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(245,245,240,0.15) 0%, transparent 35%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.manifesto__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--color-purple);
+  margin-bottom: 22px;
+  padding: 8px 18px;
+  border-radius: 999px;
+
+  /* Liquid Glass — fundo claro (seção branca) */
+  background: linear-gradient(
+    135deg,
+    rgba(131, 104, 248, 0.12) 0%,
+    rgba(131, 104, 248, 0.05) 100%
+  );
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(131, 104, 248, 0.25);
+  box-shadow:
+    0 4px 16px rgba(131, 104, 248, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(131, 104, 248, 0.08);
+}
+
+.manifesto__label::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--color-purple);
+  opacity: 0.7;
+}
+
+.manifesto__title {
+  font-family: var(--font-heading);
+  font-size: clamp(22px, 3vw, 44px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #0D0D0D;
+  max-width: 1100px;
+}
+
+/* cada palavra fica num overflow:hidden pra revelar */
+.manifesto__title .word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  margin-right: 0.22em;
+  line-height: 1.05;
+}
+
+.manifesto__title .word-inner {
+  display: inline-block;
+  transform: translateY(110%);
+  will-change: transform;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  backface-visibility: hidden;
+}
+
+/* shimmer animado nas palavras-chave */
+.manifesto__title .accent-teal {
+  background: linear-gradient(90deg, #07C9AC 0%, #a8f0e5 50%, #07C9AC 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s ease-in-out infinite;
+}
+
+.manifesto__title .accent-purple {
+  background: linear-gradient(90deg, #8368F8 0%, #c9bffe 50%, #8368F8 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s ease-in-out infinite 1s;
+}
+
+.manifesto__title .accent-pink {
+  background: linear-gradient(90deg, #FE466C 0%, #ffaabb 50%, #FE466C 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s ease-in-out infinite 2s;
+}
+
+@keyframes shimmer {
+  0%, 100% { background-position: 0% center; }
+  50%       { background-position: 200% center; }
+}
+
+/* linha de detalhe abaixo */
+.manifesto__line {
+  margin-top: 28px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.manifesto__line-bar {
+  flex: 1;
+  max-width: 240px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-teal), transparent);
+}
+
+.manifesto__sub {
+  font-family: var(--font-body);
+  font-size: clamp(14px, 1.3vw, 17px);
+  color: #555;
+  line-height: 1.7;
+  max-width: 480px;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* badges / tags — marquee infinito */
+.manifesto__tags {
+  margin-top: 28px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.tags-track {
+  display: flex;
+  gap: 12px;
+  width: max-content;
+  animation: tagsMarquee 28s linear infinite;
+  animation-play-state: paused;
+}
+
+.manifesto__tags.is-playing .tags-track {
+  animation-play-state: running;
+}
+
+@keyframes tagsMarquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.tag {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 8px 20px;
+  border-radius: 999px;
+  border: 1.5px solid currentColor;
+  white-space: nowrap;
+  transition: background 0.25s ease, color 0.25s ease;
+  cursor: default;
+}
+
+.tag--teal   { color: var(--color-teal);   }
+.tag--purple { color: var(--color-purple); }
+.tag--pink   { color: var(--color-pink);   }
+.tag--dark   { color: #0D0D0D; }
+
+/* hover: preenche com a cor */
+.tag--teal:hover   { background: var(--color-teal);   color: #0D0D0D; }
+.tag--purple:hover { background: var(--color-purple); color: #fff; }
+.tag--pink:hover   { background: var(--color-pink);   color: #fff; }
+.tag--dark:hover   { background: #0D0D0D; color: #fff; }
+
+/* bottom-nav__brand e bottom-nav__cta vivem em dock.css agora */
+.bottom-nav__brand {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--color-white);
+}
+
+.bottom-nav__brand span {
+  color: var(--color-teal);
+}
+
+.bottom-nav__cta {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-teal);
+  border: 1px solid var(--color-teal);
+  padding: 8px 20px;
+  border-radius: 999px;
+  transition: background 0.25s, color 0.25s;
+}
+
+.bottom-nav__cta:hover {
+  background: var(--color-teal);
+  color: #0D0D0D;
+}
