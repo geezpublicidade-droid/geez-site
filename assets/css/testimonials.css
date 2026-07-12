@@ -1,0 +1,235 @@
+/* =============================================
+   SEÇÃO DEPOIMENTOS — Google Avaliações
+   ============================================= */
+
+.testi-section {
+  position: relative;
+  width: 100%;
+  background: #FFFFFF;
+  padding: clamp(72px, 10vw, 140px) clamp(24px, 5vw, 80px);
+  overflow: hidden;
+}
+
+.testi-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.testi-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--color-purple);
+  margin-bottom: 20px;
+  padding: 7px 18px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(131,104,248,0.1) 0%, rgba(7,201,172,0.06) 100%);
+  border: 1px solid rgba(131,104,248,0.18);
+}
+
+.testi-label img { width: 14px; height: 14px; }
+
+.testi-title {
+  font-family: var(--font-heading);
+  font-size: clamp(28px, 3.6vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--color-dark);
+  margin-bottom: clamp(40px, 5vw, 64px);
+}
+
+/* ── AVATARES (empilhados, crossfade) ── */
+.testi-avatars {
+  position: relative;
+  height: 128px;
+  margin-bottom: 8px;
+}
+
+.testi-avatars__blob {
+  pointer-events: none;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 480px;
+  height: 480px;
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+.testi-avatars__blob::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(131,104,248,0.16) 0%, rgba(7,201,172,0.06) 45%, transparent 75%);
+}
+
+.testi-avatars__mask {
+  position: relative;
+  height: 128px;
+  -webkit-mask-image: linear-gradient(0deg, transparent, #fff 25%, #fff);
+  mask-image: linear-gradient(0deg, transparent, #fff 25%, #fff);
+}
+
+.testi-avatar {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  transform: rotate(-60deg);
+  transition: opacity 0.7s cubic-bezier(0.68,-0.3,0.32,1), transform 0.7s cubic-bezier(0.68,-0.3,0.32,1);
+  pointer-events: none;
+}
+
+.testi-avatar.is-active {
+  opacity: 1;
+  transform: rotate(0deg);
+  z-index: 2;
+}
+
+.testi-avatar__circle {
+  margin-top: 44px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+/* ── CITAÇÃO ── */
+.testi-quote-wrap {
+  position: relative;
+  margin-bottom: 32px;
+}
+
+.testi-quote-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.testi-quote {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateX(16px);
+  transition: opacity 0.5s ease-in-out 0.15s, transform 0.5s ease-in-out 0.15s;
+  pointer-events: none;
+}
+
+.testi-quote.is-active {
+  position: relative;
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.testi-stars {
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+  margin-bottom: 14px;
+}
+
+.testi-stars svg { width: 16px; height: 16px; }
+
+.testi-quote__text {
+  font-family: var(--font-heading);
+  font-size: clamp(19px, 2.1vw, 26px);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+  color: var(--color-dark);
+}
+
+.testi-quote__text::before { content: '\201C'; }
+.testi-quote__text::after  { content: '\201D'; }
+
+/* ── TABS (nomes) ── */
+.testi-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.testi-tab {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  margin: 0;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  background: #F5F4F8;
+  color: var(--color-dark);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s var(--ease-out);
+}
+
+.testi-tab:hover {
+  background: #ECEAFA;
+  transform: translateY(-1px);
+}
+
+.testi-tab.is-active {
+  background: linear-gradient(135deg, var(--color-purple), var(--color-pink));
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(131,104,248,0.3);
+}
+
+.testi-tab__role {
+  opacity: 0.6;
+  font-weight: 500;
+}
+.testi-tab.is-active .testi-tab__role { opacity: 0.85; }
+
+/* ── CTA Google ── */
+.testi-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: clamp(40px, 5vw, 56px);
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-dark);
+  border: 1.5px solid rgba(13,13,13,0.12);
+  transition: border-color 0.25s, background 0.25s, transform 0.25s var(--ease-out);
+}
+
+.testi-cta:hover {
+  border-color: var(--color-purple);
+  background: rgba(131,104,248,0.06);
+  transform: translateY(-2px);
+}
+
+.testi-cta img { width: 16px; height: 16px; }
+
+@media (max-width: 640px) {
+  .testi-tabs { gap: 8px; }
+  .testi-tab { padding: 8px 14px; font-size: 11px; }
+}
