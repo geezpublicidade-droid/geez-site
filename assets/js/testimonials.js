@@ -3,14 +3,19 @@
    ============================================= */
 (function () {
 
-  /* SUBSTITUIR pelos depoimentos reais do Google (nome, nota 1-5, texto) */
+  /* Depoimentos reais — Google (ficha "Geez Marketing", São Caetano do Sul, 5,0 ⭐ / 8 avaliações) */
   var TESTIMONIALS = [
-    { name: "Cliente 1", role: "Google", rating: 5, quote: "Depoimento placeholder — substituir pelo texto real do Google." },
-    { name: "Cliente 2", role: "Google", rating: 5, quote: "Depoimento placeholder — substituir pelo texto real do Google." },
-    { name: "Cliente 3", role: "Google", rating: 5, quote: "Depoimento placeholder — substituir pelo texto real do Google." }
+    { name: "Autrin Arquitetura", role: "Google", rating: 5, quote: "Muito bom, profissional atencioso e dedicado." },
+    { name: "Mauricio Grandeza", role: "Google", rating: 5, quote: "Excelente qualidade e bom gosto." },
+    { name: "Alexandre Linhares", role: "CEO, Três Torres Consultoria", rating: 5, quote: "Estamos há 5 anos com a Geez e posso dizer que iremos continuar por mais 5, e mais 5, e assim por diante... Geez, estamos desembarcando em Portugal! Vem novidade pela frente!" },
+    { name: "Cassia C.", role: "Google", rating: 5, quote: "Excelente experiência, atendimento de qualidade. Equipe educada, profissional e sempre disposta a ajudar. Fui muito bem atendida." },
+    { name: "Sidney Esteves da Cunha", role: "Google", rating: 5, quote: "Se tivesse 10 estrelas eu daria, sensacional o trabalho. O site com CRM melhorou muito o atendimento ao cliente, além de aumentar o nível de satisfação." },
+    { name: "Wemerson Silva", role: "Google", rating: 5, quote: "Empresa de muita excelência — a prestação dos serviços coloca o cliente sempre em primeiro lugar. Todas as nossas necessidades foram atendidas e os profissionais são excelentes." },
+    { name: "Ana Paula Sisti", role: "Google", rating: 5, quote: "Excelente atendimento, muito profissionalismo. Fiquei muito satisfeita com o trabalho realizado e vou indicar mais pessoas, com certeza!" },
+    { name: "WP", role: "Google", rating: 5, quote: "O melhor editor, fez meu folder comercial do meu produto de importação. Ficou sensacional! Super recomendado." }
   ];
 
-  var GOOGLE_REVIEWS_URL = "#"; /* SUBSTITUIR pelo link real das avaliações no Google */
+  var GOOGLE_REVIEWS_URL = "https://www.google.com/maps/place/Geez+Marketing/@-23.6242258,-46.5807148,17z/data=!4m8!3m7!1s0x94ce5d4ea63ebfdd:0x3877a5422172c0e5!8m2!3d-23.6242258!4d-46.5807148!9m1!1b1!16s%2Fg%2F11nr0315wm";
   var AUTOROTATE_MS = 7000;
   var COLORS = ["var(--color-purple)", "var(--color-teal)", "var(--color-pink)"];
 
