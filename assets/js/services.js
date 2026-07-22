@@ -4,16 +4,37 @@
 ─────────────────────────────────────────────────────────── */
 (function () {
 
-  /* ── Dados dos serviços ───────────────────────────────── */
-  var SERVICES = [
-    { name: 'Web Design',        desc: 'Sites que convertem, impressionam e fidelizam clientes. Do conceito ao deploy, entregamos experiências digitais que geram resultado real.',    media: 'assets/img/WEBDESIGN.gif', colors: ['#07C9AC', '#0D2A20'] },
-    { name: 'Branding',          desc: 'Identidade visual que transforma negócios em referências. Do logotipo às aplicações, construímos marcas que ficam na memória.',                media: 'assets/img/BRANDING.png',  colors: ['#8368F8', '#1A0D3E'] },
-    { name: 'Marketing Digital', desc: 'Estratégia, conteúdo e performance para marcas que dominam o digital. Resultados mensuráveis, crescimento consistente.',                      media: 'assets/img/MARKETING DIGITAL.png', colors: ['#FE466C', '#3E0D1A'] },
-    { name: 'Identidade Visual', desc: 'Marca consistente em todos os pontos de contato com seu cliente. Papelaria, uniformes, sinalização e muito mais.',                            media: 'assets/img/IDENTIDADE VISUAL.png', colors: ['#07C9AC', '#0D2030'] },
-    { name: 'UI / UX',           desc: 'Interfaces que encantam usuários e entregam experiências memoráveis. Design centrado em quem realmente importa: seu cliente.',                media: 'assets/img/UX UI.png',     colors: ['#8368F8', '#0D0A2E'] },
-    { name: 'Gráfica',           desc: 'Materiais impressos com acabamento premium que refletem o padrão da sua marca. Folders, cartões, embalagens e displays.',                     media: 'assets/img/GRAFICA SERV.png',   colors: ['#FE466C', '#2E0A12'] },
-    { name: 'Audiovisual',       desc: 'Conteúdo em vídeo que prende a atenção e conta a sua história. Produção completa: roteiro, filmagem, edição e motion.',                      media: 'assets/img/AUDIO VISUAL.png', colors: ['#07C9AC', '#0A1E18'] }
+  /* ── Dados dos serviços — texto vem do dicionário de idiomas
+     (assets/i18n/strings.js → window.GEEZ_SERVICES_I18N), mídia/cores
+     ficam fixas aqui, na mesma ordem dos itens do dicionário ── */
+  var SERVICE_MEDIA = [
+    { media: 'assets/img/WEBDESIGN.gif',        colors: ['#07C9AC', '#0D2A20'] },
+    { media: 'assets/img/BRANDING.png',         colors: ['#8368F8', '#1A0D3E'] },
+    { media: 'assets/img/MARKETING DIGITAL.png', colors: ['#FE466C', '#3E0D1A'] },
+    { media: 'assets/img/IDENTIDADE VISUAL.png', colors: ['#07C9AC', '#0D2030'] },
+    { media: 'assets/img/UX UI.png',            colors: ['#8368F8', '#0D0A2E'] },
+    { media: 'assets/img/GRAFICA SERV.png',     colors: ['#FE466C', '#2E0A12'] },
+    { media: 'assets/img/AUDIO VISUAL.png',     colors: ['#07C9AC', '#0A1E18'] }
   ];
+
+  function currentLang() {
+    return (window.geezI18n && window.geezI18n.getLang()) || 'pt-br';
+  }
+
+  function serviceStrings(lang) {
+    var dict = window.GEEZ_SERVICES_I18N || {};
+    return dict[lang] || dict['pt-br'] || [];
+  }
+
+  function buildServices(lang) {
+    var strings = serviceStrings(lang);
+    return SERVICE_MEDIA.map(function (m, i) {
+      var s = strings[i] || { name: '', desc: '' };
+      return { name: s.name, desc: s.desc, media: m.media, colors: m.colors };
+    });
+  }
+
+  var SERVICES = buildServices(currentLang());
 
   /* ── Shaders ───────────────────────────────────────────── */
   var vertexShader = [
@@ -495,5 +516,25 @@
     sectionNear = true;
     maybeInitRenderer();
   }
+
+  /* ── Troca de idioma — atualiza nomes/descrições sem animar
+     (a animação de entrada de texto é só para navegação entre slides) ── */
+  document.addEventListener('lang:changed', function (e) {
+    var strings = serviceStrings(e.detail.lang);
+    SERVICES.forEach(function (svc, i) {
+      if (strings[i]) { svc.name = strings[i].name; svc.desc = strings[i].desc; }
+    });
+
+    document.querySelectorAll('.svc-nav-item__name').forEach(function (el, i) {
+      if (SERVICES[i]) el.textContent = SERVICES[i].name;
+    });
+
+    if (tEl && dEl && SERVICES[current]) {
+      tEl.innerHTML   = splitChars(SERVICES[current].name);
+      dEl.textContent = SERVICES[current].desc;
+      gsap.set(Array.from(tEl.children), { opacity: 1, y: 0 });
+      gsap.set(dEl, { opacity: 1, y: 0 });
+    }
+  });
 
 })();

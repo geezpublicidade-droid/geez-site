@@ -1,0 +1,201 @@
+/* =============================================
+   LANG POPUP — escolha de idioma (1ª visita)
+   mesma linguagem visual do guide-card (liquid glass)
+   ============================================= */
+.lang-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 20000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+
+  background:
+    radial-gradient(ellipse 55% 45% at 50% 45%, rgba(40, 170, 255, 0.32) 0%, transparent 70%),
+    rgba(6, 6, 8, 0.78);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+}
+
+.lang-popup.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lang-popup__card {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  padding: 40px 32px;
+  border-radius: 28px;
+  text-align: center;
+
+  background: linear-gradient(135deg, rgba(20, 20, 20, 0.9) 0%, rgba(10, 12, 16, 0.88) 100%);
+  border: 1px solid rgba(80, 200, 255, 0.6);
+  box-shadow:
+    0 0 0 1px rgba(80, 200, 255, 0.25),
+    0 0 24px rgba(40, 170, 255, 0.65),
+    0 0 70px rgba(40, 170, 255, 0.55),
+    0 0 150px rgba(30, 140, 255, 0.4),
+    0 32px 80px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 0 40px rgba(40, 170, 255, 0.08);
+
+  transform: translateY(16px) scale(0.98);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: lang-neon-pulse 2.6s ease-in-out infinite;
+}
+
+.lang-popup.is-visible .lang-popup__card {
+  transform: translateY(0) scale(1);
+}
+
+@keyframes lang-neon-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 1px rgba(80, 200, 255, 0.25),
+      0 0 24px rgba(40, 170, 255, 0.65),
+      0 0 70px rgba(40, 170, 255, 0.55),
+      0 0 150px rgba(30, 140, 255, 0.4),
+      0 32px 80px rgba(0, 0, 0, 0.6),
+      inset 0 1px 0 rgba(255, 255, 255, 0.18),
+      inset 0 0 40px rgba(40, 170, 255, 0.08);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(80, 200, 255, 0.4),
+      0 0 36px rgba(40, 170, 255, 0.9),
+      0 0 100px rgba(40, 170, 255, 0.7),
+      0 0 200px rgba(30, 140, 255, 0.55),
+      0 32px 80px rgba(0, 0, 0, 0.6),
+      inset 0 1px 0 rgba(255, 255, 255, 0.24),
+      inset 0 0 50px rgba(40, 170, 255, 0.14);
+  }
+}
+
+.lang-popup__card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 18%;
+  right: 18%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(40, 170, 255, 1) 40%, rgba(80, 200, 255, 1) 60%, transparent);
+  box-shadow: 0 0 20px rgba(40, 170, 255, 1), 0 0 40px rgba(40, 170, 255, 0.6);
+  border-radius: 999px;
+}
+
+.lang-popup__logo {
+  width: 44px;
+  height: 44px;
+  margin: 0 auto 20px;
+  display: block;
+  filter: drop-shadow(0 0 14px rgba(46, 163, 255, 0.65));
+}
+
+.lang-popup__title {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-white);
+  letter-spacing: 0.01em;
+  margin-bottom: 8px;
+}
+
+.lang-popup__sub {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 28px;
+}
+
+.lang-popup__options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lang-popup__btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.lang-popup__btn:hover {
+  background: rgba(46, 163, 255, 0.12);
+  border-color: rgba(56, 189, 255, 0.5);
+  box-shadow: 0 0 20px rgba(46, 163, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+.lang-popup__flag {
+  font-size: 20px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.lang-popup__btn-sub {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 2px;
+}
+
+@media (max-width: 480px) {
+  .lang-popup__card { padding: 32px 22px; border-radius: 22px; }
+  .lang-popup__title { font-size: 18px; }
+}
+
+/* =============================================
+   LANG SWITCH — seletor fixo no footer
+   ============================================= */
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.lang-switch__btn {
+  appearance: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  transition: background 0.2s, color 0.2s;
+}
+
+.lang-switch__btn:hover { color: rgba(255, 255, 255, 0.7); }
+
+.lang-switch__btn.is-active {
+  background: var(--color-teal);
+  color: #05100d;
+}

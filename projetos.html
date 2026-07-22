@@ -88,6 +88,7 @@
   <link rel="stylesheet" href="assets/css/projects.css" />
   <link rel="stylesheet" href="assets/css/responsive.css" />
   <link rel="stylesheet" href="assets/css/transition.css" />
+  <link rel="stylesheet" href="assets/css/lang.css" />
   <style>
     body {
       background: #0D0D0D;
@@ -324,6 +325,29 @@
     <img src="assets/img/icons/logo-geez-static.webp" data-full="assets/img/icons/logo-geez.webp" alt="Geez" draggable="false" />
   </div>
 
+  <!-- ── LANG POPUP — escolha de idioma (1ª visita) ── -->
+  <div class="lang-popup" id="lang-popup">
+    <div class="lang-popup__card">
+      <img class="lang-popup__logo" src="assets/img/icons/logo-geez-static.webp" data-full="assets/img/icons/logo-geez.webp" alt="Geez" draggable="false" />
+      <p class="lang-popup__title">Escolha seu idioma · Choose your language</p>
+      <p class="lang-popup__sub">Selecione como prefere ver o site</p>
+      <div class="lang-popup__options">
+        <button type="button" class="lang-popup__btn" data-lang="pt-br">
+          <span class="lang-popup__flag">🇧🇷</span>
+          <span>Português (Brasil)</span>
+        </button>
+        <button type="button" class="lang-popup__btn" data-lang="pt-pt">
+          <span class="lang-popup__flag">🇵🇹</span>
+          <span>Português (Portugal)</span>
+        </button>
+        <button type="button" class="lang-popup__btn" data-lang="en">
+          <span class="lang-popup__flag">🇬🇧</span>
+          <span>English</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <section class="projects-section" id="projects-section">
 
     <!-- ── HERO ── -->
@@ -332,9 +356,9 @@
         <video class="pg-hero__vid" src="assets/video/MULHER.mp4" autoplay muted loop playsinline></video>
       </div>
       <div class="pg-hero__text">
-        <span class="pg-hero__label">Portfólio</span>
-        <h1 class="pg-hero__title">Nosso<br><em>trabalho</em><br>fala por si.</h1>
-        <p class="pg-hero__count"><strong id="visible-count">15</strong> <span id="count-label">projetos</span></p>
+        <span class="pg-hero__label" data-i18n="projetos.hero.label">Portfólio</span>
+        <h1 class="pg-hero__title" data-i18n="projetos.hero.title">Nosso<br><em>trabalho</em><br>fala por si.</h1>
+        <p class="pg-hero__count"><strong id="visible-count">15</strong> <span id="count-label" data-i18n="projetos.count.sites">projetos</span></p>
       </div>
     </div>
 
@@ -342,15 +366,15 @@
     <div class="pg-tabs">
       <button class="pg-tab tab-sites is-active" data-section="sites">
         <svg width="12" height="12" viewBox="0 0 13 13" fill="none" style="margin-right:5px"><rect x="1" y="2" width="11" height="9" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M1 5h11" stroke="currentColor" stroke-width="1.3"/></svg>
-        Sites
+        <span data-i18n="projetos.tabs.sites">Sites</span>
       </button>
       <button class="pg-tab tab-artes" data-section="artes">
         <svg width="12" height="12" viewBox="0 0 13 13" fill="none" style="margin-right:5px"><circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="1.3"/><circle cx="9" cy="4" r="2" stroke="currentColor" stroke-width="1.3"/><circle cx="6.5" cy="9" r="2" stroke="currentColor" stroke-width="1.3"/></svg>
-        Artes
+        <span data-i18n="projetos.tabs.artes">Artes</span>
       </button>
       <button class="pg-tab tab-av" data-section="audiovisual">
         <svg width="12" height="12" viewBox="0 0 13 13" fill="none" style="margin-right:5px"><rect x="1" y="2.5" width="8" height="8" rx="1.2" stroke="currentColor" stroke-width="1.3"/><path d="M9 5.5l3-2v6l-3-2" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
-        Audiovisual
+        <span data-i18n="common.cat.audiovisual">Audiovisual</span>
       </button>
     </div>
 
@@ -360,7 +384,7 @@
     <div class="pg-section" id="section-sites">
       <div class="pg-section-head">
         <p class="pg-sec-label">Web Design</p>
-        <h2 class="pg-sec-title">Sites <span class="accent-teal">Premium</span></h2>
+        <h2 class="pg-sec-title" data-i18n="projetos.sites.title">Sites <span class="accent-teal">Premium</span></h2>
       </div>
 
       <div class="port-grid-v2">
@@ -368,32 +392,32 @@
         <a href="https://www.axisinvestments.com.br" target="_blank" class="pcard">
           <div class="pcard__video"><video muted loop playsinline preload="none" data-src="https://apresentacao.geezmarketing.com.br/videos-web/axisinvestments-video.mp4"></video></div>
           <div class="pcard__info">
-            <div class="pcard__tags"><span class="port-tag port-tag-gold">Web Design</span><span class="port-tag port-tag-dark">Investimentos</span></div>
+            <div class="pcard__tags"><span class="port-tag port-tag-gold">Web Design</span><span class="port-tag port-tag-dark" data-i18n="projetos.card.axis.tag2">Investimentos</span></div>
             <p class="pcard__name">Axis Investments</p>
-            <p class="pcard__cat">Gestão de Investimentos · São Paulo</p>
-            <p class="pcard__desc">Site institucional premium com presença digital de autoridade.</p>
-            <span class="pcard__link">Ver projeto →</span>
+            <p class="pcard__cat" data-i18n="projetos.card.axis.cat">Gestão de Investimentos · São Paulo</p>
+            <p class="pcard__desc" data-i18n="projetos.card.axis.desc">Site institucional premium com presença digital de autoridade.</p>
+            <span class="pcard__link" data-i18n="common.link.ver_projeto">Ver projeto →</span>
           </div>
         </a>
 
         <a href="https://ziontecnologias.com.br" target="_blank" class="pcard">
           <div class="pcard__video"><video muted loop playsinline preload="none" data-src="https://apresentacao.geezmarketing.com.br/videos-web/ziontecnologias-video.mp4"></video></div>
           <div class="pcard__info">
-            <div class="pcard__tags"><span class="port-tag port-tag-teal">Web Design</span><span class="port-tag port-tag-dark">Tech</span></div>
+            <div class="pcard__tags"><span class="port-tag port-tag-teal">Web Design</span><span class="port-tag port-tag-dark" data-i18n="projetos.card.zion.tag2">Tech</span></div>
             <p class="pcard__name">Zion Tecnologias</p>
-            <p class="pcard__cat">Empresa de Tecnologia · São Paulo</p>
-            <p class="pcard__desc">Identidade visual moderna e autoridade digital para empresa de TI.</p>
-            <span class="pcard__link">Ver projeto →</span>
+            <p class="pcard__cat" data-i18n="projetos.card.zion.cat">Empresa de Tecnologia · São Paulo</p>
+            <p class="pcard__desc" data-i18n="projetos.card.zion.desc">Identidade visual moderna e autoridade digital para empresa de TI.</p>
+            <span class="pcard__link" data-i18n="common.link.ver_projeto">Ver projeto →</span>
           </div>
         </a>
 
         <div class="pcard">
           <div class="pcard__video"><video muted loop playsinline preload="none" data-src="https://apresentacao.geezmarketing.com.br/videos-web/video-duavesso.mp4"></video></div>
           <div class="pcard__info">
-            <div class="pcard__tags"><span class="port-tag port-tag-purple">Web Design</span><span class="port-tag port-tag-dark">Beleza</span></div>
+            <div class="pcard__tags"><span class="port-tag port-tag-purple">Web Design</span><span class="port-tag port-tag-dark" data-i18n="projetos.card.duavesso.tag2">Beleza</span></div>
             <p class="pcard__name">Duavesso Studio Coiffeur</p>
-            <p class="pcard__cat">Studio de Cabeleireiro · São Paulo</p>
-            <p class="pcard__desc">Site elegante com identidade sofisticada para studio premium.</p>
+            <p class="pcard__cat" data-i18n="projetos.card.duavesso.cat">Studio de Cabeleireiro · São Paulo</p>
+            <p class="pcard__desc" data-i18n="projetos.card.duavesso.desc">Site elegante com identidade sofisticada para studio premium.</p>
             <span class="pcard__link">Ver projeto →</span>
           </div>
         </div>
@@ -401,109 +425,109 @@
         <div class="pcard">
           <div class="pcard__video"><video muted loop playsinline preload="none" data-src="https://apresentacao.geezmarketing.com.br/videos-web/solucaoradiologia-video.mp4"></video></div>
           <div class="pcard__info">
-            <div class="pcard__tags"><span class="port-tag port-tag-teal">Web Design</span><span class="port-tag port-tag-dark">Saúde</span></div>
+            <div class="pcard__tags"><span class="port-tag port-tag-teal">Web Design</span><span class="port-tag port-tag-dark" data-i18n="projetos.card.radiologia.tag2">Saúde</span></div>
             <p class="pcard__name">Solução Radiologia Digital</p>
-            <p class="pcard__cat">Radiologia · São Paulo</p>
-            <p class="pcard__desc">Site institucional com foco em credibilidade e conversão.</p>
-            <span class="pcard__link">Em breve →</span>
+            <p class="pcard__cat" data-i18n="projetos.card.radiologia.cat">Radiologia · São Paulo</p>
+            <p class="pcard__desc" data-i18n="projetos.card.radiologia.desc">Site institucional com foco em credibilidade e conversão.</p>
+            <span class="pcard__link" data-i18n="common.link.em_breve">Em breve →</span>
           </div>
         </div>
 
         <a href="https://imobiliariatrestorres.com.br" target="_blank" class="pcard">
           <div class="pcard__video"><video muted loop playsinline preload="none" data-src="https://apresentacao.geezmarketing.com.br/videos-web/trestorres-video.mp4"></video></div>
           <div class="pcard__info">
-            <div class="pcard__tags"><span class="port-tag port-tag-gold">Web Design</span><span class="port-tag port-tag-dark">Imóveis</span></div>
+            <div class="pcard__tags"><span class="port-tag port-tag-gold">Web Design</span><span class="port-tag port-tag-dark" data-i18n="projetos.card.trestorres.tag2">Imóveis</span></div>
             <p class="pcard__name">Imobiliária Três Torres</p>
-            <p class="pcard__cat">Imobiliária · São Paulo</p>
-            <p class="pcard__desc">Site profissional com foco em captação de leads qualificados.</p>
-            <span class="pcard__link">Ver projeto →</span>
+            <p class="pcard__cat" data-i18n="projetos.card.trestorres.cat">Imobiliária · São Paulo</p>
+            <p class="pcard__desc" data-i18n="projetos.card.trestorres.desc">Site profissional com foco em captação de leads qualificados.</p>
+            <span class="pcard__link" data-i18n="common.link.ver_projeto">Ver projeto →</span>
           </div>
         </a>
 
         <a href="https://autrinarquitetura.com" target="_blank" class="pcard">
           <div class="pcard__video"><video muted loop playsinline preload="none" data-src="https://apresentacao.geezmarketing.com.br/videos-web/autrinarquitetura-video.mp4"></video></div>
           <div class="pcard__info">
-            <div class="pcard__tags"><span class="port-tag port-tag-dark">Web Design</span><span class="port-tag port-tag-dark">Arquitetura</span></div>
+            <div class="pcard__tags"><span class="port-tag port-tag-dark">Web Design</span><span class="port-tag port-tag-dark" data-i18n="projetos.card.autrin.tag2">Arquitetura</span></div>
             <p class="pcard__name">Autrin Arquitetura</p>
-            <p class="pcard__cat">Escritório de Arquitetura · São Paulo</p>
-            <p class="pcard__desc">Site premium com portfólio de projetos e estética refinada.</p>
-            <span class="pcard__link">Ver projeto →</span>
+            <p class="pcard__cat" data-i18n="projetos.card.autrin.cat">Escritório de Arquitetura · São Paulo</p>
+            <p class="pcard__desc" data-i18n="projetos.card.autrin.desc">Site premium com portfólio de projetos e estética refinada.</p>
+            <span class="pcard__link" data-i18n="common.link.ver_projeto">Ver projeto →</span>
           </div>
         </a>
 
         <div class="pcard">
           <div class="pcard__video"><video muted loop playsinline preload="none" data-src="https://apresentacao.geezmarketing.com.br/videos-web/estetica-monica-video.mp4"></video></div>
           <div class="pcard__info">
-            <div class="pcard__tags"><span class="port-tag port-tag-gold">Web Design</span><span class="port-tag port-tag-dark">Estética</span></div>
+            <div class="pcard__tags"><span class="port-tag port-tag-gold">Web Design</span><span class="port-tag port-tag-dark" data-i18n="projetos.card.monica.tag2">Estética</span></div>
             <p class="pcard__name">Dra. Mônica Lima</p>
-            <p class="pcard__cat">Clínica de Estética Avançada · São Paulo</p>
-            <p class="pcard__desc">Site premium minimalista com agendamento via WhatsApp.</p>
+            <p class="pcard__cat" data-i18n="projetos.card.monica.cat">Clínica de Estética Avançada · São Paulo</p>
+            <p class="pcard__desc" data-i18n="projetos.card.monica.desc">Site premium minimalista com agendamento via WhatsApp.</p>
           </div>
         </div>
 
         <a href="https://graficacromoprint.com.br" target="_blank" class="pcard">
           <div class="pcard__video"><video muted loop playsinline preload="none" data-src="https://apresentacao.geezmarketing.com.br/videos-web/graficacromoprint-video.mp4"></video></div>
           <div class="pcard__info">
-            <div class="pcard__tags"><span class="port-tag port-tag-teal">Web Design</span><span class="port-tag port-tag-dark">Gráfica</span></div>
+            <div class="pcard__tags"><span class="port-tag port-tag-teal">Web Design</span><span class="port-tag port-tag-dark" data-i18n="projetos.card.cromoprint.tag2">Gráfica</span></div>
             <p class="pcard__name">Gráfica Cromoprint</p>
-            <p class="pcard__cat">Gráfica e Impressão · São Paulo</p>
-            <p class="pcard__desc">Site com catálogo de produtos e captação de orçamentos.</p>
-            <span class="pcard__link">Ver projeto →</span>
+            <p class="pcard__cat" data-i18n="projetos.card.cromoprint.cat">Gráfica e Impressão · São Paulo</p>
+            <p class="pcard__desc" data-i18n="projetos.card.cromoprint.desc">Site com catálogo de produtos e captação de orçamentos.</p>
+            <span class="pcard__link" data-i18n="common.link.ver_projeto">Ver projeto →</span>
           </div>
         </a>
 
         <a href="https://www.mendezdiniz.com.br" target="_blank" class="pcard">
           <div class="pcard__video"><video muted loop playsinline preload="none" data-src="https://apresentacao.geezmarketing.com.br/videos-web/mendezdiniz-video.mp4"></video></div>
           <div class="pcard__info">
-            <div class="pcard__tags"><span class="port-tag port-tag-dark">Web Design</span><span class="port-tag port-tag-dark">Advocacia</span></div>
+            <div class="pcard__tags"><span class="port-tag port-tag-dark">Web Design</span><span class="port-tag port-tag-dark" data-i18n="projetos.card.mendez.tag2">Advocacia</span></div>
             <p class="pcard__name">Mendez &amp; Diniz</p>
-            <p class="pcard__cat">Escritório de Advocacia · São Paulo</p>
-            <p class="pcard__desc">Posicionamento jurídico sólido e transmissão de credibilidade.</p>
-            <span class="pcard__link">Ver projeto →</span>
+            <p class="pcard__cat" data-i18n="projetos.card.mendez.cat">Escritório de Advocacia · São Paulo</p>
+            <p class="pcard__desc" data-i18n="projetos.card.mendez.desc">Posicionamento jurídico sólido e transmissão de credibilidade.</p>
+            <span class="pcard__link" data-i18n="common.link.ver_projeto">Ver projeto →</span>
           </div>
         </a>
 
         <a href="https://serralheriafamiliaunida.com.br" target="_blank" class="pcard">
           <div class="pcard__video"><video muted loop playsinline preload="none" data-src="https://apresentacao.geezmarketing.com.br/videos-web/serralheriafamiliaunida-video.mp4"></video></div>
           <div class="pcard__info">
-            <div class="pcard__tags"><span class="port-tag port-tag-teal">Web Design</span><span class="port-tag port-tag-dark">Serralheria</span></div>
+            <div class="pcard__tags"><span class="port-tag port-tag-teal">Web Design</span><span class="port-tag port-tag-dark" data-i18n="projetos.card.serralheria.tag2">Serralheria</span></div>
             <p class="pcard__name">Família Unida Serralheria</p>
-            <p class="pcard__cat">Serralheria · São Paulo</p>
-            <p class="pcard__desc">Galeria de serviços e captação de leads locais.</p>
-            <span class="pcard__link">Ver projeto →</span>
+            <p class="pcard__cat" data-i18n="projetos.card.serralheria.cat">Serralheria · São Paulo</p>
+            <p class="pcard__desc" data-i18n="projetos.card.serralheria.desc">Galeria de serviços e captação de leads locais.</p>
+            <span class="pcard__link" data-i18n="common.link.ver_projeto">Ver projeto →</span>
           </div>
         </a>
 
         <a href="https://refrigeracaofamiliaunida.com.br" target="_blank" class="pcard">
           <div class="pcard__video"><video muted loop playsinline preload="none" data-src="https://apresentacao.geezmarketing.com.br/videos-web/refrigeracaofamiliaunida-video.mp4"></video></div>
           <div class="pcard__info">
-            <div class="pcard__tags"><span class="port-tag port-tag-teal">Web Design</span><span class="port-tag port-tag-dark">Refrigeração</span></div>
+            <div class="pcard__tags"><span class="port-tag port-tag-teal">Web Design</span><span class="port-tag port-tag-dark" data-i18n="projetos.card.refrigeracao.tag2">Refrigeração</span></div>
             <p class="pcard__name">Família Unida Refrigeração</p>
-            <p class="pcard__cat">Refrigeração e Climatização · São Paulo</p>
-            <p class="pcard__desc">Call-to-action direto para orçamentos e serviços.</p>
-            <span class="pcard__link">Ver projeto →</span>
+            <p class="pcard__cat" data-i18n="projetos.card.refrigeracao.cat">Refrigeração e Climatização · São Paulo</p>
+            <p class="pcard__desc" data-i18n="projetos.card.refrigeracao.desc">Call-to-action direto para orçamentos e serviços.</p>
+            <span class="pcard__link" data-i18n="common.link.ver_projeto">Ver projeto →</span>
           </div>
         </a>
 
         <a href="https://residencialfamiliaunida.com.br" target="_blank" class="pcard">
           <div class="pcard__video"><video muted loop playsinline preload="none" data-src="https://apresentacao.geezmarketing.com.br/videos-web/residencialfamiliaunida-video.mp4"></video></div>
           <div class="pcard__info">
-            <div class="pcard__tags"><span class="port-tag port-tag-gold">Web Design</span><span class="port-tag port-tag-dark">Residencial</span></div>
+            <div class="pcard__tags"><span class="port-tag port-tag-gold">Web Design</span><span class="port-tag port-tag-dark" data-i18n="projetos.card.residencial.tag2">Residencial</span></div>
             <p class="pcard__name">Família Unida Residencial</p>
-            <p class="pcard__cat">Imóveis e Residencial · São Paulo</p>
-            <p class="pcard__desc">Portfólio de imóveis com identidade visual de confiança.</p>
-            <span class="pcard__link">Ver projeto →</span>
+            <p class="pcard__cat" data-i18n="projetos.card.residencial.cat">Imóveis e Residencial · São Paulo</p>
+            <p class="pcard__desc" data-i18n="projetos.card.residencial.desc">Portfólio de imóveis com identidade visual de confiança.</p>
+            <span class="pcard__link" data-i18n="common.link.ver_projeto">Ver projeto →</span>
           </div>
         </a>
 
         <a href="https://tjassessoria.com.br" target="_blank" class="pcard">
           <div class="pcard__video"><video muted loop playsinline preload="none" data-src="https://apresentacao.geezmarketing.com.br/videos-web/tjassessoria-video.mp4"></video></div>
           <div class="pcard__info">
-            <div class="pcard__tags"><span class="port-tag port-tag-purple">Web Design</span><span class="port-tag port-tag-dark">Assessoria</span></div>
+            <div class="pcard__tags"><span class="port-tag port-tag-purple">Web Design</span><span class="port-tag port-tag-dark" data-i18n="projetos.card.tj.tag2">Assessoria</span></div>
             <p class="pcard__name">TJ Assessoria</p>
-            <p class="pcard__cat">Assessoria Empresarial · São Paulo</p>
-            <p class="pcard__desc">Posicionamento estratégico para assessoria de negócios.</p>
-            <span class="pcard__link">Ver projeto →</span>
+            <p class="pcard__cat" data-i18n="projetos.card.tj.cat">Assessoria Empresarial · São Paulo</p>
+            <p class="pcard__desc" data-i18n="projetos.card.tj.desc">Posicionamento estratégico para assessoria de negócios.</p>
+            <span class="pcard__link" data-i18n="common.link.ver_projeto">Ver projeto →</span>
           </div>
         </a>
 
@@ -512,8 +536,8 @@
           <div class="pcard__info">
             <div class="pcard__tags"><span class="port-tag port-tag-teal">Branding</span><span class="port-tag port-tag-purple">Web Design</span></div>
             <p class="pcard__name">Geez Marketing</p>
-            <p class="pcard__cat">Agência de Marketing · São Caetano do Sul</p>
-            <p class="pcard__desc">Site próprio com identidade premium e autoridade de marca.</p>
+            <p class="pcard__cat" data-i18n="projetos.card.geez.cat">Agência de Marketing · São Caetano do Sul</p>
+            <p class="pcard__desc" data-i18n="projetos.card.geez.desc">Site próprio com identidade premium e autoridade de marca.</p>
             <span class="pcard__link">Ver projeto →</span>
           </div>
         </div>
@@ -521,11 +545,11 @@
         <a href="https://www.adegavibedrinks.com.br" target="_blank" class="pcard">
           <div class="pcard__video"><video muted loop playsinline preload="none" data-src="https://apresentacao.geezmarketing.com.br/videos-web/adegavibedrinks-video.mp4"></video></div>
           <div class="pcard__info">
-            <div class="pcard__tags"><span class="port-tag port-tag-purple">Web Design</span><span class="port-tag port-tag-dark">Bebidas</span></div>
+            <div class="pcard__tags"><span class="port-tag port-tag-purple">Web Design</span><span class="port-tag port-tag-dark" data-i18n="projetos.card.vibedrinks.tag2">Bebidas</span></div>
             <p class="pcard__name">Adega Vibe Drinks</p>
-            <p class="pcard__cat">Adega · São Paulo</p>
-            <p class="pcard__desc">Identidade visual forte e experiência de compra imersiva.</p>
-            <span class="pcard__link">Ver projeto →</span>
+            <p class="pcard__cat" data-i18n="projetos.card.vibedrinks.cat">Adega · São Paulo</p>
+            <p class="pcard__desc" data-i18n="projetos.card.vibedrinks.desc">Identidade visual forte e experiência de compra imersiva.</p>
+            <span class="pcard__link" data-i18n="common.link.ver_projeto">Ver projeto →</span>
           </div>
         </a>
 
@@ -537,53 +561,53 @@
     ══════════════════════════════════ -->
     <div class="pg-section is-hidden" id="section-artes">
       <div class="pg-section-head">
-        <p class="pg-sec-label">Criações</p>
-        <h2 class="pg-sec-title">Design <span class="accent-pink">exclusivo</span></h2>
+        <p class="pg-sec-label" data-i18n="projetos.artes.label">Criações</p>
+        <h2 class="pg-sec-title" data-i18n="projetos.artes.title">Design <span class="accent-pink">exclusivo</span></h2>
       </div>
 
       <div class="sart-filters">
-        <button class="sart-filter active" data-filter="all">Todos</button>
-        <button class="sart-filter" data-filter="branding">Branding</button>
-        <button class="sart-filter" data-filter="social">Social</button>
-        <button class="sart-filter" data-filter="web">Web</button>
-        <button class="sart-filter" data-filter="grafica">Gráfica</button>
-        <button class="sart-filter" data-filter="motion">Motion</button>
+        <button class="sart-filter active" data-filter="all" data-i18n="common.cat.todos">Todos</button>
+        <button class="sart-filter" data-filter="branding" data-i18n="common.cat.branding">Branding</button>
+        <button class="sart-filter" data-filter="social" data-i18n="common.cat.social">Social</button>
+        <button class="sart-filter" data-filter="web" data-i18n="common.cat.web">Web</button>
+        <button class="sart-filter" data-filter="grafica" data-i18n="common.cat.grafica">Gráfica</button>
+        <button class="sart-filter" data-filter="motion" data-i18n="common.cat.motion">Motion</button>
       </div>
 
       <div class="sart-grid">
-        <a class="sart-card" data-category="branding" href="https://apresentacao.geezmarketing.com.br/artes/ACRINIL.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/ACRINIL.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#07C9AC">Branding</span><span class="sart-client">Id. Visual</span></div></a>
-        <a class="sart-card" data-category="social" href="https://apresentacao.geezmarketing.com.br/artes/CAIPIRINHA.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/CAIPIRINHA.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#8368F8">Social</span><span class="sart-client">Post</span></div></a>
-        <a class="sart-card" data-category="web" href="https://apresentacao.geezmarketing.com.br/artes/Banners para site.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/Banners para site.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#07B4FF">Web</span><span class="sart-client">Banner</span></div></a>
-        <a class="sart-card" data-category="branding" href="https://apresentacao.geezmarketing.com.br/artes/Prancheta 1 copiar.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/Prancheta 1 copiar.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#07C9AC">Branding</span><span class="sart-client">Logo</span></div></a>
-        <a class="sart-card" data-category="grafica" href="https://apresentacao.geezmarketing.com.br/artes/PARAFUADEIRAS.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/PARAFUADEIRAS.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#C9A84C">Gráfica</span><span class="sart-client">Produto</span></div></a>
-        <a class="sart-card" data-category="social" href="https://apresentacao.geezmarketing.com.br/artes/MÃES NAMORADOS neki .png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/MÃES NAMORADOS neki .png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#FE466C">Social</span><span class="sart-client">Data</span></div></a>
-        <a class="sart-card" data-category="motion" href="https://apresentacao.geezmarketing.com.br/artes/Untitled Project - illustrationImage.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/Untitled Project - illustrationImage.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#8368F8">Motion</span><span class="sart-client">Animação</span></div></a>
-        <a class="sart-card" data-category="branding" href="https://apresentacao.geezmarketing.com.br/artes/Laboratorio.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/Laboratorio.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#07C9AC">Branding</span><span class="sart-client">Lab</span></div></a>
-        <a class="sart-card" data-category="social" href="https://apresentacao.geezmarketing.com.br/artes/2.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/2.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#8368F8">Social</span><span class="sart-client">Carrossel</span></div></a>
-        <a class="sart-card" data-category="social" href="https://apresentacao.geezmarketing.com.br/artes/ChatGPT Image 7 de jan. de 2026, 23_22_53.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/ChatGPT Image 7 de jan. de 2026, 23_22_53.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#FE466C">Social</span><span class="sart-client">Arte</span></div></a>
-        <a class="sart-card" data-category="web" href="https://apresentacao.geezmarketing.com.br/artes/ChatGPT Image 8 de jan. de 2026, 22_34_37.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/ChatGPT Image 8 de jan. de 2026, 22_34_37.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#07B4FF">Web</span><span class="sart-client">UI</span></div></a>
-        <a class="sart-card" data-category="branding" href="https://apresentacao.geezmarketing.com.br/artes/ChatGPT Image 9 de jan. de 2026, 00_46_41.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/ChatGPT Image 9 de jan. de 2026, 00_46_41.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#07C9AC">Branding</span><span class="sart-client">Visual</span></div></a>
-        <a class="sart-card" data-category="social" href="https://apresentacao.geezmarketing.com.br/artes/3.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/3.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#8368F8">Social</span><span class="sart-client">Stories</span></div></a>
-        <a class="sart-card" data-category="grafica" href="https://apresentacao.geezmarketing.com.br/artes/st.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/st.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#C9A84C">Gráfica</span><span class="sart-client">Arte</span></div></a>
-        <a class="sart-card" data-category="motion" href="https://apresentacao.geezmarketing.com.br/artes/Untitled Project - illustrationImage (1).png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/Untitled Project - illustrationImage (1).png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#8368F8">Motion</span><span class="sart-client">Reel</span></div></a>
-        <a class="sart-card" data-category="web" href="https://apresentacao.geezmarketing.com.br/artes/Untitled Project - illustrationImage (2).png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/Untitled Project - illustrationImage (2).png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#07B4FF">Web</span><span class="sart-client">App</span></div></a>
-        <a class="sart-card" data-category="social" href="https://apresentacao.geezmarketing.com.br/artes/1.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/1.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#8368F8">Social</span><span class="sart-client">Post</span></div></a>
-        <a class="sart-card" data-category="social" href="https://apresentacao.geezmarketing.com.br/artes/3 st.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/3 st.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#FE466C">Social</span><span class="sart-client">Stories</span></div></a>
-        <a class="sart-card" data-category="social" href="https://apresentacao.geezmarketing.com.br/artes/Anuncio Oba.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/Anuncio Oba.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#8368F8">Social</span><span class="sart-client">Anúncio</span></div></a>
-        <a class="sart-card" data-category="social" href="https://apresentacao.geezmarketing.com.br/artes/BLACK FRIDAY.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/BLACK FRIDAY.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#FE466C">Social</span><span class="sart-client">Black Friday</span></div></a>
-        <a class="sart-card" data-category="social" href="https://apresentacao.geezmarketing.com.br/artes/CAPA.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/CAPA.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#8368F8">Social</span><span class="sart-client">Capa</span></div></a>
-        <a class="sart-card" data-category="social" href="https://apresentacao.geezmarketing.com.br/artes/FAMILIA UNIDA RESIDENCIAL.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/FAMILIA UNIDA RESIDENCIAL.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#FE466C">Social</span><span class="sart-client">Família Unida</span></div></a>
-        <a class="sart-card" data-category="web" href="https://apresentacao.geezmarketing.com.br/artes/HOME.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/HOME.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#07B4FF">Web</span><span class="sart-client">Home</span></div></a>
-        <a class="sart-card" data-category="branding" href="https://apresentacao.geezmarketing.com.br/artes/Prancheta 1.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/Prancheta 1.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#07C9AC">Branding</span><span class="sart-client">Logo</span></div></a>
-        <a class="sart-card" data-category="branding" href="https://apresentacao.geezmarketing.com.br/artes/Prancheta 2.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/Prancheta 2.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#07C9AC">Branding</span><span class="sart-client">Id. Visual</span></div></a>
-        <a class="sart-card" data-category="branding" href="https://apresentacao.geezmarketing.com.br/artes/Prancheta 3 copiar 4.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/Prancheta 3 copiar 4.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#07C9AC">Branding</span><span class="sart-client">Id. Visual</span></div></a>
-        <a class="sart-card" data-category="branding" href="https://apresentacao.geezmarketing.com.br/artes/Prancheta 3 copiar 9.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/Prancheta 3 copiar 9.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#07C9AC">Branding</span><span class="sart-client">Id. Visual</span></div></a>
-        <a class="sart-card" data-category="social" href="https://apresentacao.geezmarketing.com.br/artes/TJ POST .png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/TJ POST .png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#8368F8">Social</span><span class="sart-client">TJ Assessoria</span></div></a>
-        <a class="sart-card" data-category="social" href="https://apresentacao.geezmarketing.com.br/artes/TRABALHO POST.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/TRABALHO POST.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#8368F8">Social</span><span class="sart-client">Post</span></div></a>
-        <a class="sart-card" data-category="social" href="https://apresentacao.geezmarketing.com.br/artes/TRES TORRES NATAL.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/TRES TORRES NATAL.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#FE466C">Social</span><span class="sart-client">Três Torres</span></div></a>
-        <a class="sart-card" data-category="grafica" href="https://apresentacao.geezmarketing.com.br/artes/cartão de visita.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/cartão de visita.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#C9A84C">Gráfica</span><span class="sart-client">Cartão de Visita</span></div></a>
-        <a class="sart-card" data-category="social" href="https://apresentacao.geezmarketing.com.br/artes/familia.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/familia.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#8368F8">Social</span><span class="sart-client">Arte</span></div></a>
-        <a class="sart-card" data-category="social" href="https://apresentacao.geezmarketing.com.br/artes/mulher.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/mulher.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#FE466C">Social</span><span class="sart-client">Arte</span></div></a>
+        <a class="sart-card" data-category="branding" href="https://apresentacao.geezmarketing.com.br/artes/ACRINIL.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/ACRINIL.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#07C9AC" data-i18n="common.cat.branding">Branding</span><span class="sart-client">Id. Visual</span></div></a>
+        <a class="sart-card" data-category="social" href="https://apresentacao.geezmarketing.com.br/artes/CAIPIRINHA.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/CAIPIRINHA.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#8368F8" data-i18n="common.cat.social">Social</span><span class="sart-client">Post</span></div></a>
+        <a class="sart-card" data-category="web" href="https://apresentacao.geezmarketing.com.br/artes/Banners para site.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/Banners para site.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#07B4FF" data-i18n="common.cat.web">Web</span><span class="sart-client">Banner</span></div></a>
+        <a class="sart-card" data-category="branding" href="https://apresentacao.geezmarketing.com.br/artes/Prancheta 1 copiar.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/Prancheta 1 copiar.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#07C9AC" data-i18n="common.cat.branding">Branding</span><span class="sart-client">Logo</span></div></a>
+        <a class="sart-card" data-category="grafica" href="https://apresentacao.geezmarketing.com.br/artes/PARAFUADEIRAS.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/PARAFUADEIRAS.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#C9A84C" data-i18n="common.cat.grafica">Gráfica</span><span class="sart-client">Produto</span></div></a>
+        <a class="sart-card" data-category="social" href="https://apresentacao.geezmarketing.com.br/artes/MÃES NAMORADOS neki .png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/MÃES NAMORADOS neki .png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#FE466C" data-i18n="common.cat.social">Social</span><span class="sart-client">Data</span></div></a>
+        <a class="sart-card" data-category="motion" href="https://apresentacao.geezmarketing.com.br/artes/Untitled Project - illustrationImage.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/Untitled Project - illustrationImage.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#8368F8" data-i18n="common.cat.motion">Motion</span><span class="sart-client">Animação</span></div></a>
+        <a class="sart-card" data-category="branding" href="https://apresentacao.geezmarketing.com.br/artes/Laboratorio.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/Laboratorio.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#07C9AC" data-i18n="common.cat.branding">Branding</span><span class="sart-client">Lab</span></div></a>
+        <a class="sart-card" data-category="social" href="https://apresentacao.geezmarketing.com.br/artes/2.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/2.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#8368F8" data-i18n="common.cat.social">Social</span><span class="sart-client">Carrossel</span></div></a>
+        <a class="sart-card" data-category="social" href="https://apresentacao.geezmarketing.com.br/artes/ChatGPT Image 7 de jan. de 2026, 23_22_53.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/ChatGPT Image 7 de jan. de 2026, 23_22_53.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#FE466C" data-i18n="common.cat.social">Social</span><span class="sart-client">Arte</span></div></a>
+        <a class="sart-card" data-category="web" href="https://apresentacao.geezmarketing.com.br/artes/ChatGPT Image 8 de jan. de 2026, 22_34_37.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/ChatGPT Image 8 de jan. de 2026, 22_34_37.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#07B4FF" data-i18n="common.cat.web">Web</span><span class="sart-client">UI</span></div></a>
+        <a class="sart-card" data-category="branding" href="https://apresentacao.geezmarketing.com.br/artes/ChatGPT Image 9 de jan. de 2026, 00_46_41.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/ChatGPT Image 9 de jan. de 2026, 00_46_41.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#07C9AC" data-i18n="common.cat.branding">Branding</span><span class="sart-client">Visual</span></div></a>
+        <a class="sart-card" data-category="social" href="https://apresentacao.geezmarketing.com.br/artes/3.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/3.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#8368F8" data-i18n="common.cat.social">Social</span><span class="sart-client">Stories</span></div></a>
+        <a class="sart-card" data-category="grafica" href="https://apresentacao.geezmarketing.com.br/artes/st.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/st.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#C9A84C" data-i18n="common.cat.grafica">Gráfica</span><span class="sart-client">Arte</span></div></a>
+        <a class="sart-card" data-category="motion" href="https://apresentacao.geezmarketing.com.br/artes/Untitled Project - illustrationImage (1).png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/Untitled Project - illustrationImage (1).png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#8368F8" data-i18n="common.cat.motion">Motion</span><span class="sart-client">Reel</span></div></a>
+        <a class="sart-card" data-category="web" href="https://apresentacao.geezmarketing.com.br/artes/Untitled Project - illustrationImage (2).png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/Untitled Project - illustrationImage (2).png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#07B4FF" data-i18n="common.cat.web">Web</span><span class="sart-client">App</span></div></a>
+        <a class="sart-card" data-category="social" href="https://apresentacao.geezmarketing.com.br/artes/1.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/1.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#8368F8" data-i18n="common.cat.social">Social</span><span class="sart-client">Post</span></div></a>
+        <a class="sart-card" data-category="social" href="https://apresentacao.geezmarketing.com.br/artes/3 st.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/3 st.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#FE466C" data-i18n="common.cat.social">Social</span><span class="sart-client">Stories</span></div></a>
+        <a class="sart-card" data-category="social" href="https://apresentacao.geezmarketing.com.br/artes/Anuncio Oba.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/Anuncio Oba.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#8368F8" data-i18n="common.cat.social">Social</span><span class="sart-client">Anúncio</span></div></a>
+        <a class="sart-card" data-category="social" href="https://apresentacao.geezmarketing.com.br/artes/BLACK FRIDAY.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/BLACK FRIDAY.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#FE466C" data-i18n="common.cat.social">Social</span><span class="sart-client">Black Friday</span></div></a>
+        <a class="sart-card" data-category="social" href="https://apresentacao.geezmarketing.com.br/artes/CAPA.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/CAPA.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#8368F8" data-i18n="common.cat.social">Social</span><span class="sart-client">Capa</span></div></a>
+        <a class="sart-card" data-category="social" href="https://apresentacao.geezmarketing.com.br/artes/FAMILIA UNIDA RESIDENCIAL.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/FAMILIA UNIDA RESIDENCIAL.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#FE466C" data-i18n="common.cat.social">Social</span><span class="sart-client">Família Unida</span></div></a>
+        <a class="sart-card" data-category="web" href="https://apresentacao.geezmarketing.com.br/artes/HOME.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/HOME.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#07B4FF" data-i18n="common.cat.web">Web</span><span class="sart-client">Home</span></div></a>
+        <a class="sart-card" data-category="branding" href="https://apresentacao.geezmarketing.com.br/artes/Prancheta 1.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/Prancheta 1.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#07C9AC" data-i18n="common.cat.branding">Branding</span><span class="sart-client">Logo</span></div></a>
+        <a class="sart-card" data-category="branding" href="https://apresentacao.geezmarketing.com.br/artes/Prancheta 2.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/Prancheta 2.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#07C9AC" data-i18n="common.cat.branding">Branding</span><span class="sart-client">Id. Visual</span></div></a>
+        <a class="sart-card" data-category="branding" href="https://apresentacao.geezmarketing.com.br/artes/Prancheta 3 copiar 4.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/Prancheta 3 copiar 4.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#07C9AC" data-i18n="common.cat.branding">Branding</span><span class="sart-client">Id. Visual</span></div></a>
+        <a class="sart-card" data-category="branding" href="https://apresentacao.geezmarketing.com.br/artes/Prancheta 3 copiar 9.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/Prancheta 3 copiar 9.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#07C9AC" data-i18n="common.cat.branding">Branding</span><span class="sart-client">Id. Visual</span></div></a>
+        <a class="sart-card" data-category="social" href="https://apresentacao.geezmarketing.com.br/artes/TJ POST .png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/TJ POST .png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#8368F8" data-i18n="common.cat.social">Social</span><span class="sart-client">TJ Assessoria</span></div></a>
+        <a class="sart-card" data-category="social" href="https://apresentacao.geezmarketing.com.br/artes/TRABALHO POST.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/TRABALHO POST.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#8368F8" data-i18n="common.cat.social">Social</span><span class="sart-client">Post</span></div></a>
+        <a class="sart-card" data-category="social" href="https://apresentacao.geezmarketing.com.br/artes/TRES TORRES NATAL.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/TRES TORRES NATAL.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#FE466C" data-i18n="common.cat.social">Social</span><span class="sart-client">Três Torres</span></div></a>
+        <a class="sart-card" data-category="grafica" href="https://apresentacao.geezmarketing.com.br/artes/cartão de visita.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/cartão de visita.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#C9A84C" data-i18n="common.cat.grafica">Gráfica</span><span class="sart-client">Cartão de Visita</span></div></a>
+        <a class="sart-card" data-category="social" href="https://apresentacao.geezmarketing.com.br/artes/familia.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/familia.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#8368F8" data-i18n="common.cat.social">Social</span><span class="sart-client">Arte</span></div></a>
+        <a class="sart-card" data-category="social" href="https://apresentacao.geezmarketing.com.br/artes/mulher.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/artes/mulher.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#FE466C" data-i18n="common.cat.social">Social</span><span class="sart-client">Arte</span></div></a>
       </div>
     </div>
 
@@ -592,24 +616,24 @@
     ══════════════════════════════════ -->
     <div class="pg-section is-hidden" id="section-audiovisual">
       <div class="pg-section-head">
-        <p class="pg-sec-label">Produções</p>
-        <h2 class="pg-sec-title">Audio<span class="accent-purple">visual</span></h2>
+        <p class="pg-sec-label" data-i18n="projetos.av.label">Produções</p>
+        <h2 class="pg-sec-title" data-i18n="projetos.av.title">Audio<span class="accent-purple">visual</span></h2>
       </div>
 
       <div class="sart-grid">
-        <a class="sart-card" href="https://apresentacao.geezmarketing.com.br/videomaker/WhatsApp Image 2026-06-05 at 10.07.26.jpeg" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/videomaker/WhatsApp Image 2026-06-05 at 10.07.26.jpeg" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#FE466C">Audiovisual</span><span class="sart-client">Produção</span></div></a>
-        <a class="sart-card" href="https://apresentacao.geezmarketing.com.br/videomaker/WhatsApp Image 2026-06-05 at 10.14.26.jpeg" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/videomaker/WhatsApp Image 2026-06-05 at 10.14.26.jpeg" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#FE466C">Audiovisual</span><span class="sart-client">Produção</span></div></a>
-        <a class="sart-card" href="https://apresentacao.geezmarketing.com.br/videomaker/WhatsApp Image 2026-06-05 at 11.05.57.jpeg" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/videomaker/WhatsApp Image 2026-06-05 at 11.05.57.jpeg" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#FE466C">Audiovisual</span><span class="sart-client">BTS</span></div></a>
-        <a class="sart-card" href="https://apresentacao.geezmarketing.com.br/videomaker/WhatsApp Image 2026-06-05 at 11.29.18.jpeg" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/videomaker/WhatsApp Image 2026-06-05 at 11.29.18.jpeg" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#FE466C">Audiovisual</span><span class="sart-client">BTS</span></div></a>
-        <a class="sart-card" href="https://apresentacao.geezmarketing.com.br/videomaker/WhatsApp Image 2026-06-05 at 11.29.49.jpeg" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/videomaker/WhatsApp Image 2026-06-05 at 11.29.49.jpeg" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#FE466C">Audiovisual</span><span class="sart-client">BTS</span></div></a>
-        <a class="sart-card" href="https://apresentacao.geezmarketing.com.br/videomaker/WhatsApp Image 2026-06-05 at 11.36.32.jpeg" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/videomaker/WhatsApp Image 2026-06-05 at 11.36.32.jpeg" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#FE466C">Audiovisual</span><span class="sart-client">BTS</span></div></a>
-        <a class="sart-card" href="https://apresentacao.geezmarketing.com.br/videomaker/Captura de tela 2026-06-05 105733.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/videomaker/Captura de tela 2026-06-05 105733.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#8368F8">Video Maker</span><span class="sart-client">Edição</span></div></a>
-        <a class="sart-card" href="https://apresentacao.geezmarketing.com.br/videomaker/Captura de tela 2026-06-05 105826.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/videomaker/Captura de tela 2026-06-05 105826.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#8368F8">Video Maker</span><span class="sart-client">Edição</span></div></a>
-        <a class="sart-card" href="https://apresentacao.geezmarketing.com.br/videomaker/Captura de tela 2026-06-05 112220.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/videomaker/Captura de tela 2026-06-05 112220.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#8368F8">Video Maker</span><span class="sart-client">Edição</span></div></a>
-        <a class="sart-card" href="https://apresentacao.geezmarketing.com.br/videomaker/Captura de tela 2026-06-05 034639.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/videomaker/Captura de tela 2026-06-05 034639.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#8368F8">Video Maker</span><span class="sart-client">Edição</span></div></a>
-        <a class="sart-card" href="https://apresentacao.geezmarketing.com.br/videomaker/Captura de tela 2026-06-05 034718.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/videomaker/Captura de tela 2026-06-05 034718.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#8368F8">Video Maker</span><span class="sart-client">Edição</span></div></a>
-        <a class="sart-card" href="https://apresentacao.geezmarketing.com.br/videomaker/Captura de tela 2026-06-05 141620.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/videomaker/Captura de tela 2026-06-05 141620.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#FE466C">Audiovisual</span><span class="sart-client">Produção</span></div></a>
-        <a class="sart-card" href="https://apresentacao.geezmarketing.com.br/videomaker/652294549_18112782598663765_3964684104060627313_n.jpg" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/videomaker/652294549_18112782598663765_3964684104060627313_n.jpg" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#FE466C">Audiovisual</span><span class="sart-client">BTS</span></div></a>
+        <a class="sart-card" href="https://apresentacao.geezmarketing.com.br/videomaker/WhatsApp Image 2026-06-05 at 10.07.26.jpeg" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/videomaker/WhatsApp Image 2026-06-05 at 10.07.26.jpeg" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#FE466C" data-i18n="common.cat.audiovisual">Audiovisual</span><span class="sart-client" data-i18n="projetos.av.producao">Produção</span></div></a>
+        <a class="sart-card" href="https://apresentacao.geezmarketing.com.br/videomaker/WhatsApp Image 2026-06-05 at 10.14.26.jpeg" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/videomaker/WhatsApp Image 2026-06-05 at 10.14.26.jpeg" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#FE466C" data-i18n="common.cat.audiovisual">Audiovisual</span><span class="sart-client" data-i18n="projetos.av.producao">Produção</span></div></a>
+        <a class="sart-card" href="https://apresentacao.geezmarketing.com.br/videomaker/WhatsApp Image 2026-06-05 at 11.05.57.jpeg" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/videomaker/WhatsApp Image 2026-06-05 at 11.05.57.jpeg" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#FE466C" data-i18n="common.cat.audiovisual">Audiovisual</span><span class="sart-client">BTS</span></div></a>
+        <a class="sart-card" href="https://apresentacao.geezmarketing.com.br/videomaker/WhatsApp Image 2026-06-05 at 11.29.18.jpeg" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/videomaker/WhatsApp Image 2026-06-05 at 11.29.18.jpeg" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#FE466C" data-i18n="common.cat.audiovisual">Audiovisual</span><span class="sart-client">BTS</span></div></a>
+        <a class="sart-card" href="https://apresentacao.geezmarketing.com.br/videomaker/WhatsApp Image 2026-06-05 at 11.29.49.jpeg" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/videomaker/WhatsApp Image 2026-06-05 at 11.29.49.jpeg" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#FE466C" data-i18n="common.cat.audiovisual">Audiovisual</span><span class="sart-client">BTS</span></div></a>
+        <a class="sart-card" href="https://apresentacao.geezmarketing.com.br/videomaker/WhatsApp Image 2026-06-05 at 11.36.32.jpeg" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/videomaker/WhatsApp Image 2026-06-05 at 11.36.32.jpeg" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#FE466C" data-i18n="common.cat.audiovisual">Audiovisual</span><span class="sart-client">BTS</span></div></a>
+        <a class="sart-card" href="https://apresentacao.geezmarketing.com.br/videomaker/Captura de tela 2026-06-05 105733.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/videomaker/Captura de tela 2026-06-05 105733.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#8368F8" data-i18n="common.cat.videomaker">Video Maker</span><span class="sart-client" data-i18n="projetos.av.edicao">Edição</span></div></a>
+        <a class="sart-card" href="https://apresentacao.geezmarketing.com.br/videomaker/Captura de tela 2026-06-05 105826.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/videomaker/Captura de tela 2026-06-05 105826.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#8368F8" data-i18n="common.cat.videomaker">Video Maker</span><span class="sart-client" data-i18n="projetos.av.edicao">Edição</span></div></a>
+        <a class="sart-card" href="https://apresentacao.geezmarketing.com.br/videomaker/Captura de tela 2026-06-05 112220.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/videomaker/Captura de tela 2026-06-05 112220.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#8368F8" data-i18n="common.cat.videomaker">Video Maker</span><span class="sart-client" data-i18n="projetos.av.edicao">Edição</span></div></a>
+        <a class="sart-card" href="https://apresentacao.geezmarketing.com.br/videomaker/Captura de tela 2026-06-05 034639.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/videomaker/Captura de tela 2026-06-05 034639.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#8368F8" data-i18n="common.cat.videomaker">Video Maker</span><span class="sart-client" data-i18n="projetos.av.edicao">Edição</span></div></a>
+        <a class="sart-card" href="https://apresentacao.geezmarketing.com.br/videomaker/Captura de tela 2026-06-05 034718.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/videomaker/Captura de tela 2026-06-05 034718.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#8368F8" data-i18n="common.cat.videomaker">Video Maker</span><span class="sart-client" data-i18n="projetos.av.edicao">Edição</span></div></a>
+        <a class="sart-card" href="https://apresentacao.geezmarketing.com.br/videomaker/Captura de tela 2026-06-05 141620.png" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/videomaker/Captura de tela 2026-06-05 141620.png" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#FE466C" data-i18n="common.cat.audiovisual">Audiovisual</span><span class="sart-client" data-i18n="projetos.av.producao">Produção</span></div></a>
+        <a class="sart-card" href="https://apresentacao.geezmarketing.com.br/videomaker/652294549_18112782598663765_3964684104060627313_n.jpg" target="_blank"><img class="sart-img" src="https://apresentacao.geezmarketing.com.br/videomaker/652294549_18112782598663765_3964684104060627313_n.jpg" loading="lazy" alt=""><div class="sart-bar"><span class="sart-cat" style="color:#FE466C" data-i18n="common.cat.audiovisual">Audiovisual</span><span class="sart-client">BTS</span></div></a>
       </div>
     </div>
 
@@ -621,14 +645,19 @@
       <a href="index.html" class="pg-footer__logo" aria-label="Geez Marketing">
         <img src="assets/img/icons/logo-inteira.webp" alt="Geez" height="28" draggable="false" loading="lazy" />
       </a>
-      <span class="pg-footer__copy">© 2026 Geez Marketing. Todos os direitos reservados.</span>
+      <span class="pg-footer__copy" data-i18n="common.footer.copy">© 2026 Geez Marketing. Todos os direitos reservados.</span>
       <nav class="pg-footer__links">
-        <a href="index.html">Início</a>
-        <a href="index.html#servicos">Serviços</a>
-        <a href="sobre.html">Sobre</a>
-        <a href="grafica.html">Gráfica</a>
-        <a href="index.html#contato">Contato</a>
+        <a href="index.html" data-i18n="common.dock.inicio">Início</a>
+        <a href="index.html#servicos" data-i18n="common.dock.servicos">Serviços</a>
+        <a href="sobre.html" data-i18n="common.dock.sobre">Sobre</a>
+        <a href="grafica.html" data-i18n="common.dock.grafica">Gráfica</a>
+        <a href="index.html#contato" data-i18n="common.dock.contato">Contato</a>
       </nav>
+      <div class="lang-switch">
+        <button type="button" class="lang-switch__btn" data-lang="pt-br">PT-BR</button>
+        <button type="button" class="lang-switch__btn" data-lang="pt-pt">PT</button>
+        <button type="button" class="lang-switch__btn" data-lang="en">EN</button>
+      </div>
     </div>
   </footer>
 
@@ -637,34 +666,36 @@
     <img class="bottom-nav__brand" src="assets/img/icons/logo-inteira-static.webp" data-full="assets/img/icons/logo-inteira.webp" alt="Geez" draggable="false" />
     <div class="dock">
       <div class="dock__item" data-target="index.html">
-        <div class="dock__icon dock__icon--img"><img src="assets/img/icons/home-static.webp" data-full="assets/img/icons/home.webp" alt="Início" draggable="false" /></div>
-        <span class="dock__label">Início</span><div class="dock__dot"></div>
+        <div class="dock__icon dock__icon--img"><img src="assets/img/icons/home-static.webp" data-full="assets/img/icons/home.webp" alt="Início" draggable="false" data-i18n-attr="alt:common.dock.inicio" /></div>
+        <span class="dock__label" data-i18n="common.dock.inicio">Início</span><div class="dock__dot"></div>
       </div>
       <div class="dock__item" data-target="index.html#servicos">
-        <div class="dock__icon dock__icon--img"><img src="assets/img/icons/servicos-static.webp" data-full="assets/img/icons/servicos.webp" alt="Serviços" draggable="false" /></div>
-        <span class="dock__label">Serviços</span><div class="dock__dot"></div>
+        <div class="dock__icon dock__icon--img"><img src="assets/img/icons/servicos-static.webp" data-full="assets/img/icons/servicos.webp" alt="Serviços" draggable="false" data-i18n-attr="alt:common.dock.servicos" /></div>
+        <span class="dock__label" data-i18n="common.dock.servicos">Serviços</span><div class="dock__dot"></div>
       </div>
       <div class="dock__item is-active" data-target="projetos.html">
-        <div class="dock__icon dock__icon--img"><img src="assets/img/icons/projetos-static.webp" data-full="assets/img/icons/projetos.webp" alt="Projetos" draggable="false" /></div>
-        <span class="dock__label">Projetos</span><div class="dock__dot"></div>
+        <div class="dock__icon dock__icon--img"><img src="assets/img/icons/projetos-static.webp" data-full="assets/img/icons/projetos.webp" alt="Projetos" draggable="false" data-i18n-attr="alt:common.dock.projetos" /></div>
+        <span class="dock__label" data-i18n="common.dock.projetos">Projetos</span><div class="dock__dot"></div>
       </div>
       <div class="dock__item" data-target="sobre.html">
-        <div class="dock__icon dock__icon--img"><img src="assets/img/icons/sobre-static.webp" data-full="assets/img/icons/sobre.webp" alt="Sobre" draggable="false" /></div>
-        <span class="dock__label">Sobre</span><div class="dock__dot"></div>
+        <div class="dock__icon dock__icon--img"><img src="assets/img/icons/sobre-static.webp" data-full="assets/img/icons/sobre.webp" alt="Sobre" draggable="false" data-i18n-attr="alt:common.dock.sobre" /></div>
+        <span class="dock__label" data-i18n="common.dock.sobre">Sobre</span><div class="dock__dot"></div>
       </div>
       <div class="dock__item" data-target="index.html#contato">
-        <div class="dock__icon dock__icon--img"><img src="assets/img/icons/contato-static.webp" data-full="assets/img/icons/contato.webp" alt="Contato" draggable="false" /></div>
-        <span class="dock__label">Contato</span><div class="dock__dot"></div>
+        <div class="dock__icon dock__icon--img"><img src="assets/img/icons/contato-static.webp" data-full="assets/img/icons/contato.webp" alt="Contato" draggable="false" data-i18n-attr="alt:common.dock.contato" /></div>
+        <span class="dock__label" data-i18n="common.dock.contato">Contato</span><div class="dock__dot"></div>
       </div>
       <div class="dock__item" data-target="grafica.html">
-        <div class="dock__icon dock__icon--img"><img src="assets/img/icons/grafica-static.webp" data-full="assets/img/icons/grafica.webp" alt="Gráfica" draggable="false" /></div>
-        <span class="dock__label">Gráfica</span><div class="dock__dot"></div>
+        <div class="dock__icon dock__icon--img"><img src="assets/img/icons/grafica-static.webp" data-full="assets/img/icons/grafica.webp" alt="Gráfica" draggable="false" data-i18n-attr="alt:common.dock.grafica" /></div>
+        <span class="dock__label" data-i18n="common.dock.grafica">Gráfica</span><div class="dock__dot"></div>
       </div>
     </div>
-    <a href="https://wa.me/5511947026961" target="_blank" rel="noopener" class="bottom-nav__cta">Falar com a gente</a>
+    <a href="https://wa.me/5511947026961" target="_blank" rel="noopener" class="bottom-nav__cta" data-i18n="common.dock.cta">Falar com a gente</a>
   </nav>
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="assets/i18n/strings.js"></script>
+  <script src="assets/js/i18n.js"></script>
   <script src="assets/js/transition.js"></script>
   <script src="assets/js/icon-swap.js"></script>
   <script src="assets/js/dock.js"></script>
@@ -676,8 +707,10 @@
     gsap.from('.pcard', { opacity: 0, y: 22, duration: 0.55, ease: 'power3.out', stagger: 0.055, delay: 0.68 });
 
     var COUNTS = { sites: 15, artes: 32, audiovisual: 13 };
+    var COUNT_KEYS = { sites: 'projetos.count.sites', artes: 'projetos.count.artes', audiovisual: 'projetos.count.av' };
     var countEl = document.getElementById('visible-count');
     var labelEl = document.getElementById('count-label');
+    var currentSection = 'sites';
 
     /* ── TABS ── */
     document.querySelectorAll('.pg-tab').forEach(function(tab) {
@@ -686,9 +719,10 @@
         document.querySelectorAll('.pg-section').forEach(function(s) { s.classList.add('is-hidden'); });
         tab.classList.add('is-active');
         var sec = tab.dataset.section;
+        currentSection = sec;
         document.getElementById('section-' + sec).classList.remove('is-hidden');
         countEl.textContent = COUNTS[sec];
-        labelEl.textContent = sec === 'sites' ? 'projetos' : sec === 'artes' ? 'criações' : 'produções';
+        labelEl.textContent = (window.geezI18n ? window.geezI18n.t(COUNT_KEYS[sec]) : null) || sec;
         if (typeof lenis !== 'undefined') {
           lenis.scrollTo(0, { duration: 1.2, easing: function (t) { return 1 - Math.pow(1 - t, 4); } });
         } else {
@@ -779,6 +813,11 @@
           card.classList.toggle('hidden', f !== 'all' && card.dataset.category !== f);
         });
       });
+    });
+
+    /* ── troca de idioma: re-sincroniza o rótulo do contador ── */
+    document.addEventListener('lang:changed', function() {
+      labelEl.textContent = (window.geezI18n ? window.geezI18n.t(COUNT_KEYS[currentSection]) : null) || currentSection;
     });
 
   </script>
