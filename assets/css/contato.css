@@ -193,6 +193,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 12px;
   gap: 24px;
   border-top: 1px solid rgba(255,255,255,0.06);
   padding-top: 40px;

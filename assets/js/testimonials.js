@@ -64,27 +64,47 @@
     var tab = document.createElement("button");
     tab.type = "button";
     tab.className = "testi-tab";
+    tab.dataset.index = i;
     tab.innerHTML = "<span>" + t.name + '</span><span class="testi-tab__role">— ' + t.role + "</span>";
-    tab.addEventListener("click", function () {
-      setActive(i);
-      autorotate = false;
-    });
     tabsEl.appendChild(tab);
   });
 
   var avatarEls = avatarsMask.querySelectorAll(".testi-avatar");
   var quoteEls  = quoteInner.querySelectorAll(".testi-quote");
-  var tabEls    = tabsEl.querySelectorAll(".testi-tab");
 
   var active = 0;
   var autorotate = true;
   var timer = null;
+  var tabsTween = null;
+
+  /* ── Fileira de nomes rolando infinita (mesmo truque do ticker do hero):
+     duplica o conteúdo e anima -50% em loop; delegação de clique cobre
+     os nomes originais e os duplicados sem precisar re-ligar listeners ── */
+  function initTabsMarquee() {
+    if (tabsEl.scrollWidth <= tabsEl.parentElement.clientWidth) return; /* cabe tudo — não precisa rolar */
+    tabsEl.innerHTML += tabsEl.innerHTML;
+    var pxPerSecond = 40;
+    var duration = (tabsEl.scrollWidth / 2) / pxPerSecond;
+    tabsTween = gsap.to(tabsEl, { xPercent: -50, duration: duration, ease: "none", repeat: -1 });
+  }
+
+  tabsEl.addEventListener("click", function (e) {
+    var btn = e.target.closest(".testi-tab");
+    if (!btn) return;
+    setActive(parseInt(btn.dataset.index, 10));
+    autorotate = false;
+  });
+
+  tabsEl.parentElement.addEventListener("mouseenter", function () { if (tabsTween) tabsTween.pause(); });
+  tabsEl.parentElement.addEventListener("mouseleave", function () { if (tabsTween) tabsTween.resume(); });
 
   function setActive(index) {
     active = index;
     avatarEls.forEach(function (el, i) { el.classList.toggle("is-active", i === index); });
     quoteEls.forEach(function (el, i) { el.classList.toggle("is-active", i === index); });
-    tabEls.forEach(function (el, i) { el.classList.toggle("is-active", i === index); });
+    tabsEl.querySelectorAll(".testi-tab").forEach(function (el) {
+      el.classList.toggle("is-active", parseInt(el.dataset.index, 10) === index);
+    });
   }
 
   function tick() {
@@ -96,5 +116,8 @@
   if (TESTIMONIALS.length > 1) {
     timer = setInterval(tick, AUTOROTATE_MS);
   }
+
+  /* espera o layout assentar (fontes/CSS) antes de medir a largura da fileira */
+  requestAnimationFrame(function () { requestAnimationFrame(initTabsMarquee); });
 
 })();

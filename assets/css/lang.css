@@ -170,6 +170,8 @@
 .lang-switch {
   display: inline-flex;
   align-items: center;
+  flex-shrink: 0;
+  white-space: nowrap;
   gap: 2px;
   padding: 3px;
   border-radius: 999px;

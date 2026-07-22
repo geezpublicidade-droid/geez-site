@@ -51,6 +51,7 @@ window.GEEZ_I18N = {
     'home.services.label': 'Nossos Serviços',
     'home.services.cta':   'Solicitar orçamento',
     'home.services.hint':  'Toque para avançar',
+    'home.services.hint_desktop': 'Clique na tela para ver os serviços',
 
     'home.testi.google': 'Google Avaliações',
     'home.testi.title':  'O que dizem sobre a Geez',
@@ -288,6 +289,7 @@ window.GEEZ_I18N = {
     'home.services.label': 'Os nossos serviços',
     'home.services.cta':   'Pedir orçamento',
     'home.services.hint':  'Toca para avançar',
+    'home.services.hint_desktop': 'Clica no ecrã para veres os serviços',
 
     'home.testi.google': 'Google Avaliações',
     'home.testi.title':  'O que dizem sobre a Geez',
@@ -525,6 +527,7 @@ window.GEEZ_I18N = {
     'home.services.label': 'Our Services',
     'home.services.cta':   'Request a quote',
     'home.services.hint':  'Tap to advance',
+    'home.services.hint_desktop': 'Click anywhere to see the services',
 
     'home.testi.google': 'Google Reviews',
     'home.testi.title':  'What people say about Geez',

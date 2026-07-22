@@ -402,7 +402,7 @@
       border-top: 1px solid rgba(255,255,255,0.06);
       padding: 40px clamp(24px, 5vw, 80px) 140px;
     }
-    .pg-footer__inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .pg-footer__inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; row-gap: 12px; gap: 24px; }
     .pg-footer__logo { display: flex; align-items: center; opacity: .8; transition: opacity .25s; }
     .pg-footer__logo:hover { opacity: 1; }
     .pg-footer__logo img { height: 28px; width: auto; display: block; }
@@ -599,11 +599,6 @@
         <a href="sobre.html" data-i18n="common.dock.sobre">Sobre</a>
         <a href="index.html#contato" data-i18n="common.dock.contato">Contato</a>
       </nav>
-      <div class="lang-switch">
-        <button type="button" class="lang-switch__btn" data-lang="pt-br">PT-BR</button>
-        <button type="button" class="lang-switch__btn" data-lang="pt-pt">PT</button>
-        <button type="button" class="lang-switch__btn" data-lang="en">EN</button>
-      </div>
     </div>
   </footer>
 
@@ -636,7 +631,14 @@
         <span class="dock__label" data-i18n="common.dock.grafica">Gráfica</span><div class="dock__dot"></div>
       </div>
     </div>
-    <a href="https://wa.me/5511947026961" target="_blank" rel="noopener" class="bottom-nav__cta" data-i18n="common.dock.cta">Falar com a gente</a>
+    <div class="bottom-nav__right">
+      <div class="lang-switch">
+        <button type="button" class="lang-switch__btn" data-lang="pt-br">PT-BR</button>
+        <button type="button" class="lang-switch__btn" data-lang="pt-pt">PT</button>
+        <button type="button" class="lang-switch__btn" data-lang="en">EN</button>
+      </div>
+      <a href="https://wa.me/5511947026961" target="_blank" rel="noopener" class="bottom-nav__cta" data-i18n="common.dock.cta">Falar com a gente</a>
+    </div>
   </nav>
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>

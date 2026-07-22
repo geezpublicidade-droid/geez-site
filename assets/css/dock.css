@@ -16,10 +16,10 @@
   align-items: center;
   justify-content: center;
 
-  /* Liquid Glass */
-  background: rgba(8, 8, 8, 0.45);
-  backdrop-filter: blur(40px) saturate(180%) brightness(1.08);
-  -webkit-backdrop-filter: blur(40px) saturate(180%) brightness(1.08);
+  /* Liquid Glass — blur reduzido: fixo na tela o tempo todo, custo alto de repintura no scroll */
+  background: rgba(8, 8, 8, 0.72);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow:
     0 -1px 0 rgba(255, 255, 255, 0.04),
@@ -71,11 +71,20 @@
   z-index: 1;
 }
 
-/* ── CTA ── */
-.bottom-nav__cta {
+/* ── GRUPO DA DIREITA (CTA + seletor de idioma) ── */
+.bottom-nav__right {
   position: absolute;
   right: clamp(40px, 6vw, 100px);
   z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* ── CTA ── */
+.bottom-nav__cta {
+  flex-shrink: 0;
+  white-space: nowrap;
   font-family: var(--font-body);
   font-size: 12px;
   font-weight: 700;

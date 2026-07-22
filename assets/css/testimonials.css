@@ -159,12 +159,20 @@
 .testi-quote__text::before { content: '\201C'; }
 .testi-quote__text::after  { content: '\201D'; }
 
-/* ── TABS (nomes) ── */
+/* ── TABS (nomes) — fileira rolando infinita, tipo ticker ── */
+.testi-tabs-viewport {
+  width: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #fff 10%, #fff 90%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #fff 10%, #fff 90%, transparent);
+}
+
 .testi-tabs {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
   gap: 10px;
+  width: max-content;
 }
 
 .testi-tab {
@@ -176,6 +184,8 @@
   border-radius: 999px;
   border: none;
   cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
   font-family: var(--font-body);
   font-size: 12px;
   font-weight: 600;
