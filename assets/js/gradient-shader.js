@@ -110,31 +110,59 @@
     resize();
     window.addEventListener('resize', resize);
 
-    /* ── Loop de renderização — só roda enquanto o canvas está visível ── */
+    /* ── Loop de renderização — só roda enquanto o canvas está visível,
+       a aba está em primeiro plano, e o usuário não pediu menos animação ── */
     var start = performance.now();
     var rafId = null;
+    var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    function frame() {
-      rafId = requestAnimationFrame(frame);
+    function renderFrame(t) {
       resize(); /* corrige tamanho se o layout mudar */
-      var t = (performance.now() - start) / 1000;
       gl.uniform1f(uTime, t);
       gl.uniform2f(uRes, canvas.width, canvas.height);
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
     }
 
-    function startLoop() { if (rafId === null) frame(); }
-    function stopLoop()  { if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; } }
+    function frame() {
+      rafId = requestAnimationFrame(frame);
+      renderFrame((performance.now() - start) / 1000);
+    }
 
-    if ('IntersectionObserver' in window) {
-      var visObserver = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          entry.isIntersecting ? startLoop() : stopLoop();
-        });
-      }, { threshold: 0 });
-      visObserver.observe(canvas);
+    var inView = false;
+    var tabVisible = !document.hidden;
+
+    function syncLoop() {
+      var shouldRun = inView && tabVisible && !reducedMotion;
+      if (shouldRun && rafId === null) {
+        frame();
+      } else if (!shouldRun && rafId !== null) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+    }
+
+    if (reducedMotion) {
+      /* Sem loop contínuo — desenha um único frame estático e para por aí */
+      renderFrame(0);
     } else {
-      startLoop();
+      if ('IntersectionObserver' in window) {
+        var visObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            inView = entry.isIntersecting;
+            syncLoop();
+          });
+        }, { threshold: 0 });
+        visObserver.observe(canvas);
+      } else {
+        inView = true;
+      }
+
+      document.addEventListener('visibilitychange', function () {
+        tabVisible = !document.hidden;
+        syncLoop();
+      });
+
+      syncLoop();
     }
   }
 
