@@ -165,18 +165,71 @@
 }
 
 /* =============================================
-   LANG SWITCH — seletor fixo no footer
+   LANG SWITCH — botão único que abre um menu
+   flutuante pra cima do ícone, então nunca
+   sobrepõe o dock nem qualquer outro elemento
    ============================================= */
 .lang-switch {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.lang-switch__trigger {
+  appearance: none;
   display: inline-flex;
   align-items: center;
-  flex-shrink: 0;
-  white-space: nowrap;
-  gap: 2px;
-  padding: 3px;
+  gap: 6px;
+  padding: 7px 12px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.lang-switch__trigger:hover,
+.lang-switch.is-open .lang-switch__trigger {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.lang-switch__trigger svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+.lang-switch__current {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.lang-switch__menu {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 118px;
+  padding: 6px;
+  border-radius: 14px;
+  background: rgba(10, 10, 12, 0.92);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+  transform-origin: bottom right;
+  transform: translateY(6px) scale(0.96);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.lang-switch.is-open .lang-switch__menu {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
 }
 
 .lang-switch__btn {
@@ -184,20 +237,23 @@
   border: none;
   background: transparent;
   cursor: pointer;
-  padding: 5px 12px;
-  border-radius: 999px;
+  text-align: left;
+  padding: 8px 12px;
+  border-radius: 9px;
   font-family: var(--font-body);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.55);
   transition: background 0.2s, color 0.2s;
 }
 
-.lang-switch__btn:hover { color: rgba(255, 255, 255, 0.7); }
+.lang-switch__btn:hover { background: rgba(255, 255, 255, 0.06); color: rgba(255, 255, 255, 0.9); }
 
 .lang-switch__btn.is-active {
   background: var(--color-teal);
   color: #05100d;
 }
+
+.lang-switch__btn.is-active:hover { background: var(--color-teal); color: #05100d; }

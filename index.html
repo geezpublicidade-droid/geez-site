@@ -579,9 +579,15 @@
 
     <div class="bottom-nav__right">
       <div class="lang-switch">
-        <button type="button" class="lang-switch__btn" data-lang="pt-br">PT-BR</button>
-        <button type="button" class="lang-switch__btn" data-lang="pt-pt">PT</button>
-        <button type="button" class="lang-switch__btn" data-lang="en">EN</button>
+        <button type="button" class="lang-switch__trigger" aria-haspopup="true" aria-expanded="false" aria-label="Escolher idioma">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3Z"/></svg>
+          <span class="lang-switch__current">PT-BR</span>
+        </button>
+        <div class="lang-switch__menu" role="menu">
+          <button type="button" class="lang-switch__btn" data-lang="pt-br" role="menuitem">PT-BR</button>
+          <button type="button" class="lang-switch__btn" data-lang="pt-pt" role="menuitem">PT</button>
+          <button type="button" class="lang-switch__btn" data-lang="en" role="menuitem">EN</button>
+        </div>
       </div>
       <a href="https://wa.me/5511947026961" target="_blank" rel="noopener" class="bottom-nav__cta" data-i18n="common.dock.cta">Falar com a gente</a>
     </div>

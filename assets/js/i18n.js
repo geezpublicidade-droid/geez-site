@@ -15,9 +15,22 @@
     return LANGS.indexOf(saved) !== -1 ? saved : null;
   }
 
+  var CURRENT_LABEL = { 'pt-br': 'PT-BR', 'pt-pt': 'PT', 'en': 'EN' };
+
   function updateSwitchers(lang) {
     document.querySelectorAll('.lang-switch__btn').forEach(function (btn) {
       btn.classList.toggle('is-active', btn.getAttribute('data-lang') === lang);
+    });
+    document.querySelectorAll('.lang-switch__current').forEach(function (el) {
+      el.textContent = CURRENT_LABEL[lang] || lang;
+    });
+  }
+
+  function closeLangMenus() {
+    document.querySelectorAll('.lang-switch.is-open').forEach(function (el) {
+      el.classList.remove('is-open');
+      var trigger = el.querySelector('.lang-switch__trigger');
+      if (trigger) trigger.setAttribute('aria-expanded', 'false');
     });
   }
 
@@ -62,6 +75,7 @@
     localStorage.setItem(STORAGE_KEY, lang);
     applyLang(lang);
     hidePopup();
+    closeLangMenus();
   }
 
   function t(key) {
@@ -86,6 +100,25 @@
     btn.addEventListener('click', function () { setLang(btn.getAttribute('data-lang')); });
   });
   if (current) updateSwitchers(current);
+
+  /* botão único do seletor: abre/fecha o menu de idiomas por cima
+     dele, em vez de mostrar os 3 botões soltos o tempo todo */
+  document.querySelectorAll('.lang-switch__trigger').forEach(function (trigger) {
+    trigger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var wrap = trigger.closest('.lang-switch');
+      var willOpen = !wrap.classList.contains('is-open');
+      closeLangMenus();
+      if (willOpen) {
+        wrap.classList.add('is-open');
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+  document.addEventListener('click', closeLangMenus);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeLangMenus();
+  });
 
   /* Mostra o popup só quando ainda não há idioma escolhido — logo
      após o site:ready (se a página disparar) ou, no mais tardar,
