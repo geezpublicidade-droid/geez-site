@@ -169,6 +169,25 @@
   .bottom-nav__brand,
   .bottom-nav__cta { display: none !important; }
 
+  /* seletor de idioma sai da barra e vira pill fixo no canto,
+     senão fica em cima dos ícones do dock (que ocupam quase
+     a largura toda da tela no mobile) */
+  .bottom-nav__right {
+    position: fixed !important;
+    top: 12px;
+    right: 12px;
+    bottom: auto;
+    left: auto;
+    z-index: 9500;
+  }
+
+  .lang-switch {
+    background: rgba(8, 8, 8, 0.72);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
   .dock {
     gap: 10px;
     padding: 8px 18px;
