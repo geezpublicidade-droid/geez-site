@@ -164,6 +164,11 @@
     height: 72px !important;
     padding: 0 12px !important;
     justify-content: center !important;
+    /* backdrop-filter faz a barra virar o referencial de position:fixed dos filhos,
+       e o seletor de idioma acabava em cima do dock em vez do canto da tela */
+    background: rgba(8, 8, 8, 0.92);
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
   }
 
   .bottom-nav__brand,
