@@ -211,3 +211,17 @@
   });
 
 })();
+
+
+/* Mobile: o seletor de idioma fica fixo no topo e cobria o conteúdo. Some ao rolar para baixo, volta ao rolar para cima ou no topo. */
+(function () {
+  var box = document.querySelector('.bottom-nav__right');
+  if (!box) return;
+  var last = window.scrollY;
+  window.addEventListener('scroll', function () {
+    var y = window.scrollY;
+    if (y < 60 || y < last - 4) box.classList.remove('is-hidden');
+    else if (y > last + 4) box.classList.add('is-hidden');
+    last = y;
+  }, { passive: true });
+})();

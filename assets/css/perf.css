@@ -21,5 +21,12 @@
 }
 .dock__icon,
 .dock__label { background-color: rgba(20, 20, 24, 0.72); }
-.bottom-nav,
 .bottom-nav__cta { background-color: rgba(13, 13, 13, 0.82); }
+.bottom-nav { background-color: rgba(8, 8, 8, 0.86); }
+
+/* Mobile: barra opaca (senão a seção seguinte aparece atrás do dock) e idioma some ao rolar */
+@media (max-width: 768px) {
+  .bottom-nav { background-color: rgba(8, 8, 8, 0.97); }
+  .bottom-nav__right { transition: transform .25s ease, opacity .25s ease; }
+  .bottom-nav__right.is-hidden { transform: translateY(-72px); opacity: 0; pointer-events: none; }
+}
