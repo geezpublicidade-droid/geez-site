@@ -1,0 +1,25 @@
+/* Performance: elementos fixos com backdrop-filter são refeitos a cada quadro de rolagem.
+   O dock tinha blur no container E em cada ícone/legenda (blur dentro de blur).
+   Mantém um único blur leve no dock e troca o resto por fundo translúcido. */
+.dock { backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+.dock__icon,
+.dock__label,
+.bottom-nav,
+.bottom-nav__cta,
+.hero-split__badge,
+.hero-split__eyebrow,
+.manifesto__label,
+.svc-label,
+#editor-toggle,
+.pg-filter-btn,
+.pg-item__gif,
+.pg-item__arrow,
+.case-hero__back,
+.case-highlight {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+.dock__icon,
+.dock__label { background-color: rgba(20, 20, 24, 0.72); }
+.bottom-nav,
+.bottom-nav__cta { background-color: rgba(13, 13, 13, 0.82); }
